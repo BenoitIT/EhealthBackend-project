@@ -30,6 +30,10 @@ return 'welcome back';
           Route::GET('/list of doctors/{hospital}',[hospitalOperatorController::class,'showAll']);
           Route::DELETE('/delete-doctor/{doctor}',[hospitalOperatorController::class,'deleteDoctor']);
 
+          Route::POST('/new-receptionist',[hospitalOperatorController::class,'storeRec']);
+          Route::PATCH('/update-reciptionist/{reciptionist}',[hospitalOperatorController::class,'updateRec']);
+          Route::GET('/list of reciptionists/{hospital}',[hospitalOperatorController::class,'showAllRec']);
+          Route::DELETE('/delete-reciptionist/{reciptionist}',[hospitalOperatorController::class,'deleteRec']);
 //superAdmin
 Route::POST('/login',[superAdminController::class,'loginUser']);
 
