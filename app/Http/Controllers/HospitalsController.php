@@ -21,7 +21,7 @@ class HospitalsController extends Controller
         'hospital_OwnershipType'=>'required']);
         Hospital::create([
             'hospital_name'=>$request->hospital_name,
-            'hospital_Admin'=>$request->hospital_name,
+            'hospital_Admin'=>$request->hospital_Admin,
             'province'=>$request->province,
             'district'=>$request->district,
            'password'=>hash::make($request->password),

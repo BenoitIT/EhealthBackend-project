@@ -13,4 +13,9 @@ class Hospital extends Authenticatable
     public $timestamps=false;
     protected $fillable=['hospital_name','hospital_Admin','province','district',
     'password','hospital_OwnershipType','created_at','updated_at'];
+
+    public function Doctor(){
+    return $this->hasMany(Doctor::class);
+    }
 }
+
