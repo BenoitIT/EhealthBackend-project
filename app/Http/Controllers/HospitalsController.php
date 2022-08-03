@@ -64,7 +64,7 @@ class HospitalsController extends Controller
         {
 
         $Admin= Hospital::where('hospital_Admin',$request->hospital_Admin)->first();
-        $token=$Admin->createToken("AdminToken")->plainTextToken;
+        $token=$Admin->createToken('AdminToken',['hospitals'])->plainTextToken;
         return response([
             'name'=>$Admin->hospital_name,
             'TOKEN'=>$token]);

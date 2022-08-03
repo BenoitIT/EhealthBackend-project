@@ -17,14 +17,15 @@ use App\Http\Controllers\hospitalOperatorController;
 |
 */
 route::prefix('V1')->group(function(){
-route::get('/start',function(){
-return 'welcome back';
-});
+         route::get('/start',function(){
+             return 'welcome back';
+                            });
 
 
 
 // hospital admin
           Route::POST('/admin-login',[HospitalsController::class,'AdminLogin']);
+Route::middleware(['auth:sanctum','abilities:hospitals'])->group(function () {
           Route::POST('/new-doctor',[hospitalOperatorController::class,'store']);
           Route::PATCH('/update-doctor/{doctor}',[hospitalOperatorController::class,'update']);
           Route::GET('/list of doctors/{hospital}',[hospitalOperatorController::class,'showAll']);
@@ -34,10 +35,11 @@ return 'welcome back';
           Route::PATCH('/update-reciptionist/{reciptionist}',[hospitalOperatorController::class,'updateRec']);
           Route::GET('/list of reciptionists/{hospital}',[hospitalOperatorController::class,'showAllRec']);
           Route::DELETE('/delete-reciptionist/{reciptionist}',[hospitalOperatorController::class,'deleteRec']);
+        });
 //superAdmin
 Route::POST('/login',[superAdminController::class,'loginUser']);
 
-    Route::middleware(['auth:sanctum'])->group(function () {
+    Route::middleware(['auth:sanctum','abilities:users'])->group(function () {
         Route::POST('/logout',[superAdminController::class,'logout']);
         Route::POST('/superregister',[superAdminController::class,'store']);
         Route::POST('/hospitalregister',[HospitalsController::class,'store']);

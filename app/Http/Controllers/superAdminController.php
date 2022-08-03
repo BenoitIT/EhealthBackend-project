@@ -34,7 +34,7 @@ class superAdminController extends Controller
                 'status' => true,
                 'user'=>$user->name,
                 'message' => 'User Logged In Successfully',
-                'token' => $user->createToken("sanctumToken")->plainTextToken
+                'token' => $user->createToken('sanctumToken',['users'])->plainTextToken
             ], 200);
 
         } catch (\Throwable $th) {

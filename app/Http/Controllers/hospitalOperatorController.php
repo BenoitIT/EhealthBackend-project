@@ -29,7 +29,7 @@ class hospitalOperatorController extends Controller
         'doctor_Gender'=>$request->doctor_Gender,
         'BirthDate'=>$request->BirthDate,
         'Telephone'=>$request->Telephone,
-        'doctor_Image'=>$doctorImage,
+        'doctor_Image'=> $doctorImage,
         'hospital_id'=>$request->hospital_id
     ]);
     return response([
