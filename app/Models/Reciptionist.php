@@ -21,5 +21,7 @@ class Reciptionist extends Model
                             $image->move($imagepath,$imagename);
                            return $path.$imagename;
                         }
-
+ public function Hospital(){
+         return $this->belongsTo(Hospital::class);
+                          }
 }

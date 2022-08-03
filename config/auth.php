@@ -44,6 +44,10 @@ return [
             'driver' => 'session',
             'provider' => 'hospitals',
         ],
+        'Employauth' => [
+            'driver' => 'session',
+            'provider' => 'employauths',
+        ],
     ],
 
     /*
@@ -71,6 +75,10 @@ return [
         'hospitals' => [
             'driver' => 'eloquent',
             'model' => App\Models\Hospital::class,
+        ],
+        'employauths' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Employauth::class,
         ],
 
         // 'users' => [

@@ -21,7 +21,7 @@ class hospitalOperatorController extends Controller
         'doctor_Image'=>'required',
         'hospital_id'=>'required'
     ]);
-    $doctorImage = Doctor::saveImage($request->file('doctor_Image'));
+   $doctorImage = Doctor::saveImage($request->file('doctor_Image'));
     Doctor::create([
         'FirstName'=>$request->FirstName,
         'LastName'=>$request->LastName,
@@ -29,7 +29,7 @@ class hospitalOperatorController extends Controller
         'doctor_Gender'=>$request->doctor_Gender,
         'BirthDate'=>$request->BirthDate,
         'Telephone'=>$request->Telephone,
-        'doctor_Image'=> $doctorImage,
+        'doctor_Image'=> $request->doctor_Image,
         'hospital_id'=>$request->hospital_id
     ]);
     return response([
