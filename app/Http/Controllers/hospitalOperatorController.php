@@ -6,11 +6,15 @@ use App\Models\Doctor;
 use App\Models\Reciptionist;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class hospitalOperatorController extends Controller
 {
     //CREATE DOCTOR
+
     public function store(request $request){
+        if(auth()->user()->role== 1){
+
     $request->validate([
         'FirstName'=>'required',
         'LastName'=>'required',
@@ -21,7 +25,7 @@ class hospitalOperatorController extends Controller
         'doctor_Image'=>'required',
         'hospital_id'=>'required'
     ]);
-   $doctorImage = Doctor::saveImage($request->file('doctor_Image'));
+   //$doctorImage = Doctor::saveImage($request->file('doctor_Image'));
     Doctor::create([
         'FirstName'=>$request->FirstName,
         'LastName'=>$request->LastName,
@@ -33,33 +37,51 @@ class hospitalOperatorController extends Controller
         'hospital_id'=>$request->hospital_id
     ]);
     return response([
-        'message'=>'new doctor is saved successfully'
+        'message'=>'new doctor is saved successfully',
+
     ]);
+}
+else{
+    return response(['message'=>'you are not allowed to perform this action'],403);
+}
     }
     //UPDATE DOCTORS
     public function update(doctor $doctor,request $request){
+         if(auth()->user()->role== 1){
         $doctor->update($request->all());
         return response([
             'updated'=>$doctor
         ]);
     }
+    else{
+        return response(['message'=>'you are not allowed to perform this action'],403);
+    }}
     //LIST ALL DOCTORS
     public function showall($hospital){
+        if(auth()->user()->role== 1){
         $doctors= DB::table('doctors')->where('hospital_id',$hospital)->get();
         return $doctors;
      return response([
         'list of doctors'=>$doctors
      ]);
     }
+    else{
+        return response(['message'=>'you are not allowed to perform this action'],403);
+    }}
     //DELETE SPECIFIC DOCTOR
     public function deleteDoctor($doctor){
+        if(auth()->user()->role== 1){
         DB::table('doctors')->where('id',$doctor)->delete();
      return response([
         'list of doctors'=>Doctor::all()
      ]);
     }
+    else{
+        return response(['message'=>'you are not allowed to perform this action'],403);
+    }}
      //CREATE receptionist
      public function storeRec(request $request){
+        if(auth()->user()->role== 1){
         $request->validate([
             'FirstName'=>'required',
             'LastName'=>'required',
@@ -85,26 +107,40 @@ class hospitalOperatorController extends Controller
             'message'=>'new receptionist is saved successfully'
         ]);
     }
+    else{
+        return response(['message'=>'you are not allowed to perform this action'],403);
+    }}
      //UPDATE receptionists
      public function updateRec(reciptionist $reciptionist,request $request){
+        if(auth()->user()->role== 1){
         $reciptionist->update($request->all());
         return response([
             'updated'=>$reciptionist
         ]);
     }
+        else{
+            return response(['message'=>'you are not allowed to perform this action'],403);
+        }}
      //LIST ALL reciptionists
      public function showallRec($hospital){
+        if(auth()->user()->role== 1){
         $reciptionists= DB::table('reciptionists')->where('hospital_id',$hospital)->get();
 
      return response([
         'list of receptionists'=>$reciptionists
      ]);
     }
+    else{
+        return response(['message'=>'you are not allowed to perform this action'],403);
+    }}
      //DELETE SPECIFIC reciptionist
      public function deleteRec($reciptionist){
+        if(auth()->user()->role== 1){
         DB::table('reciptionists')->where('id',$reciptionist)->delete();
      return response([
         'list of reciptionists'=>Reciptionist::all()
      ]);
     }
-}
+else{
+    return response(['message'=>'you are not allowed to perform this action'],403);
+}}}

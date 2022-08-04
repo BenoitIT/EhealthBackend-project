@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Validator;
 
-class superAdminController extends Controller
+class hospitalWorkerController extends Controller
 {
     public function loginUser(Request $request)
     {
@@ -34,7 +34,7 @@ class superAdminController extends Controller
                 'status' => true,
                 'user'=>$user->name,
                 'message' => 'User Logged In Successfully',
-                'token' => $user->createToken('sanctumToken',['users'])->plainTextToken
+                'token' => $user->createToken('sanctumToken')->plainTextToken
             ], 200);
 
         } catch (\Throwable $th) {
@@ -66,12 +66,14 @@ public function store(Request $request)
         'name' => ['required', 'string', 'max:255'],
         'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
         'password' => ['required'],
+        'role'=>'required'
     ]);
 
     $user = User::create([
         'name' => $request->name,
         'email' => $request->email,
         'password' => Hash::make($request->password),
+        'role'=>$request->role,
     ]);
 
     event(new Registered($user));

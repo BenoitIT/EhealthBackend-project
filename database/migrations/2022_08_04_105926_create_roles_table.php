@@ -13,12 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('employauths', function (Blueprint $table) {
+        Schema::create('roles', function (Blueprint $table) {
             $table->id();
-            $table->string('empl_names');
-            $table->string('email');
-            $table->string('password');
-            $table->string('access_role');
+            $table->string('role_name');
             $table->timestamps();
         });
     }
@@ -30,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('employauths');
+        Schema::dropIfExists('roles');
     }
 };

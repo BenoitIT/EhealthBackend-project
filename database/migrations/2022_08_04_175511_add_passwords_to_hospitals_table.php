@@ -13,13 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('hospitals', function (Blueprint $table) {
-            $table->id();
-            $table->string('hospital_name');
-            $table->string('hospital_Admin');
-            $table->string('province');
-            $table->string('district');
-            $table->string('hospital_OwnershipType');
+        Schema::table('hospitals', function (Blueprint $table) {
+            $table->string('hospital_email');
+            $table->string('password');
         });
     }
 
@@ -30,6 +26,9 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('hospitals');
+        Schema::table('hospitals', function (Blueprint $table) {
+
+
+        });
     }
 };

@@ -22,7 +22,6 @@ return new class extends Migration
             $table->string('Gender');
             $table->date('BirthDate');
             $table->integer('Telephone');
-            $table->string('access_password');
             $table->unsignedBigInteger('assigned_doctor');
             $table->unsignedBigInteger('hospital_id');
             $table->foreign('assigned_doctor')->references('id')->on('doctors');

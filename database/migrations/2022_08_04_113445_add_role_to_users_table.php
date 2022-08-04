@@ -13,13 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('hospitals', function (Blueprint $table) {
-            $table->id();
-            $table->string('hospital_name');
-            $table->string('hospital_Admin');
-            $table->string('province');
-            $table->string('district');
-            $table->string('hospital_OwnershipType');
+        Schema::table('users', function (Blueprint $table) {
+            $table->unsignedBigInteger('role');
+            $table->foreign('role')->references('id')->on('roles')
+            ->onUpdate('cascade')
+            ->ondelete('cascade');
         });
     }
 
@@ -30,6 +28,9 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('hospitals');
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropForeign(['role']);
+            $table->dropColumn('role');
+        });
     }
 };

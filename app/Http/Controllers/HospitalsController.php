@@ -1,8 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
-
 use App\Models\Hospital;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -11,40 +9,59 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class HospitalsController extends Controller
 {
+
     public function store(request $request){
+        if(auth()->user()->role== 1){
         $request->validate(
         ['hospital_name'=>'required|unique:hospitals,hospital_name',
         'hospital_Admin'=>'required|unique:hospitals,hospital_Admin',
         'province'=>'required',
         'district'=>'required',
+        'hospital_email'=>'required',
         'password'=>'required',
-        'hospital_OwnershipType'=>'required']);
+       'hospital_OwnershipType'=>'required']);
         Hospital::create([
             'hospital_name'=>$request->hospital_name,
             'hospital_Admin'=>$request->hospital_Admin,
             'province'=>$request->province,
             'district'=>$request->district,
+            'hospital_email'=>$request->hospital_email,
            'password'=>hash::make($request->password),
-           'hospital_OwnershipType'=>$request->hospital_OwnershipType
+           'hospital_OwnershipType'=>$request->hospital_OwnershipType,
+           'role'=>'admin'
         ]);
      return response([
        'results'=>'hospital recorded successfully'
      ]);
     }
+    else{
+        return response(['message'=>'you are not allowed to perform this action']);
+    }
+    }
     //show all hospitals
 
     public function showAll(){
+        if(auth()->user()->role== 1){
      return response([
         'hospitals list'=>Hospital::all()
      ]);
     }
+    else{
+        return response(['message'=>'you are not allowed to perform this action']);
+    }
+    }
     //update hospitals
     public function update(hospital $hospital,request $request){
+        if(auth()->user()->role== 1){
 
      $hospital->update($request->all());
      return response([
        'updated results'=>$hospital
      ]);
+    }
+    else{
+        return response(['message'=>'you are not allowed to perform this action']);
+    }
     }
 
 
@@ -55,15 +72,15 @@ class HospitalsController extends Controller
 
     public function AdminLogin(request $request){
     $request->validate([
-        'hospital_Admin'=>'required',
+        'hospital_email'=>'required',
         'password'=>'required'
     ]);
     if(Auth()->guard('Hospital')->attempt([
-        'hospital_Admin'=>$request->hospital_Admin,
+        'hospital_email'=>$request->hospital_email,
         'password'=>$request->password,]))
         {
 
-        $Admin= Hospital::where('hospital_Admin',$request->hospital_Admin)->first();
+        $Admin= Hospital::where('hospital_email',$request->hospital_email)->first();
         $token=$Admin->createToken('AdminToken',['hospitals'])->plainTextToken;
         return response([
             'name'=>$Admin->hospital_name,
@@ -72,9 +89,14 @@ class HospitalsController extends Controller
         {
        return response([
         'status'=>'false',
-        'message'=>'admin name and password are not valid'
+        'message'=>'hospital email and password are not valid'
        ]);
     }
 
+  }
+  public function logout(request $request){
+    auth::guard('Hospital')->logout();
+    return response([
+    'message'=>'you are logged out']);
   }
 }
