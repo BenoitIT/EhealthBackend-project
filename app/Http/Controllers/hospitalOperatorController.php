@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Doctor;
+use App\Models\Patient;
 use App\Models\Reciptionist;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -47,7 +48,7 @@ else{
     }
     //UPDATE DOCTORS
     public function update(doctor $doctor,request $request){
-         if(auth()->user()->role== 1){
+         if(auth()->user()->role== 'admin'){
         $doctor->update($request->all());
         return response([
             'updated'=>$doctor
@@ -81,7 +82,7 @@ else{
     }}
      //CREATE receptionist
      public function storeRec(request $request){
-        if(auth()->user()->role== 1){
+        if(auth()->user()->role== 'admin'){
         $request->validate([
             'FirstName'=>'required',
             'LastName'=>'required',
@@ -92,7 +93,7 @@ else{
             'reciptionist_Image'=>'required',
             'hospital_id'=>'required'
         ]);
-        $doctorImage = Reciptionist::saveImage($request->file('reciptionist_Image'));
+       // $doctorImage = Reciptionist::saveImage($request->file('reciptionist_Image'));
         Reciptionist::create([
             'FirstName'=>$request->FirstName,
             'LastName'=>$request->LastName,
@@ -143,4 +144,15 @@ else{
     }
 else{
     return response(['message'=>'you are not allowed to perform this action'],403);
+}}
+public function showAllpatient($hospital){
+    if(auth()->user()->role=='admin'){
+ return response([
+    'patient list'=>Patient::where('hospital_id',$hospital)->get()
+ ]);
+}
+else{
+return response([
+    'message'=>'you are not allowed'
+]);
 }}}

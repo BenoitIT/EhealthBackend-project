@@ -14,13 +14,13 @@ class Reciptionist extends Model
     'Gender',
     'BirthDate','Telephone',
     'reciptionist_Image','hospital_id'];
-     static function saveImage($image,$path='/image')
-                        {
-                            $imagename=time().'.'.$image->getClientOriginalExtension();
-                            $imagepath=public_path($path);
-                            $image->move($imagepath,$imagename);
-                           return $path.$imagename;
-                        }
+    //  static function saveImage($image,$path='/image')
+    //                     {
+    //                         $imagename=time().'.'.$image->getClientOriginalExtension();
+    //                         $imagepath=public_path($path);
+    //                         $image->move($imagepath,$imagename);
+    //                        return $path.$imagename;
+    //                     }
  public function Hospital(){
          return $this->belongsTo(Hospital::class);
                           }

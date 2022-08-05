@@ -8,8 +8,8 @@ use Illuminate\Support\Facades\Hash;
 class PatientController extends Controller
 {
  public function store(request $request){
+     if(auth()->user()->role== 4){
 
-    {
         $request->validate([
             'FirstName'=>'required',
             'LastName'=>'required',
@@ -17,7 +17,7 @@ class PatientController extends Controller
             'district'=>'required',
             'Gender'=>'required',
             'BirthDate'=>'required',
-            'Telephone'=>'required|numbers|min:10|max:10',
+            'Telephone'=>'required|min:10|max:10',
             'access_password'=>'required|min:4|max:8',
             'assigned_doctor'=>'required',
             'hospital_id'=>'required'
@@ -39,5 +39,7 @@ class PatientController extends Controller
         ]);
     }
 
+else{
+    return response(['message'=>'this is allowed for anly receptionist']);
 }
-}
+}}

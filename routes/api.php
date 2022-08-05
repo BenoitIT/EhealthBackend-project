@@ -7,6 +7,7 @@ use App\Http\Controllers\PatientController;
 use App\Http\Controllers\HospitalsController;
 use App\Http\Controllers\superAdminController;
 use App\Http\Controllers\EmployAuthsController;
+use App\Http\Controllers\MedicalTestsController;
 use App\Http\Controllers\hospitalWorkerController;
 use App\Http\Controllers\hospitalOperatorController;
 
@@ -30,6 +31,7 @@ route::prefix('V1')->group(function(){
 // hospital admin
 
 Route::middleware(['auth:sanctum'])->group(function () {
+    //hospital admin
           Route::POST('/new-doctor',[hospitalOperatorController::class,'store']);
           Route::PATCH('/update-doctor/{doctor}',[hospitalOperatorController::class,'update']);
           Route::GET('/list-of-doctors/{hospital}',[hospitalOperatorController::class,'showAll']);
@@ -40,25 +42,31 @@ Route::middleware(['auth:sanctum'])->group(function () {
           Route::PATCH('/update-reciptionist/{reciptionist}',[hospitalOperatorController::class,'updateRec']);
           Route::GET('/list of reciptionists/{hospital}',[hospitalOperatorController::class,'showAllRec']);
           Route::DELETE('/delete-reciptionist/{reciptionist}',[hospitalOperatorController::class,'deleteRec']);
+          Route::GET('/List-of-registered-patients/{hospital}',[hospitalOperatorController::class,'showAllpatient']);
 
-//employee login
-
+          Route::POST('/logout',[hospitalWorkerController::class,'logout']);
+          Route::POST('/doctor and rec register',[hospitalWorkerController::class,'store']);
+          Route::POST('/new Hospital account',[newHospitalAdmin::class,'store']);
+          Route::POST('/new-doctor-account',[newHospitalAdmin::class,'storedoc']);
+          Route::POST('/new-receptionist-account',[newHospitalAdmin::class,'storeRec']);
+//receptionist
         Route::POST('/new-patient',[PatientController::class,'store']);
-
-
-        Route::POST('/logout',[hospitalWorkerController::class,'logout']);
-        Route::POST('/doctor and rec register',[hospitalWorkerController::class,'store']);
-        Route::POST('/new Hospital account',[newHospitalAdmin::class,'store']);
-        Route::POST('/new-doctor-account',[newHospitalAdmin::class,'storedoc']);
-        Route::POST('/new-receptionist-account',[newHospitalAdmin::class,'storeRec']);
-       //superAdmin
-    });
+ });
+    //superAdmin
     Route::POST('/login',[hospitalWorkerController::class,'loginUser']);
     Route::POST('/hospitalAdmin',[HospitalsController::class,'adminLogin']);
 Route::middleware(['auth:sanctum'])->group(function () {
         Route::POST('/hospitalregister',[HospitalsController::class,'store']);
         Route::GET('/list-of-hospitals',[HospitalsController::class,'showAll']);
         Route::PATCH('/updatehospital/{hospital}',[HospitalsController::class,'update']);
-});
 
+//doctors operations
+Route::GET('/patient-identification/{patient}',[MedicalTestsController::class,'showpatient']);
+Route::POST('/test-recording',[MedicalTestsController::class,'store']);
+Route::PATCH('/test-update/{patient}',[MedicalTestsController::class,'update']);
+Route::GET('/tests-for-patient/{patient}',[MedicalTestsController::class,'showtests']);
+Route::GET('/tests-of-hospital/{hospital}',[MedicalTestsController::class,'showtestperHospital']);
+
+
+});
 });

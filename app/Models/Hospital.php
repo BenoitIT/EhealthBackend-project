@@ -25,5 +25,8 @@ class Hospital extends Authenticatable
 public function Hospital(){
             return $this->hasMany(Hospital::class);
             }
+            public function Test(){
+                return $this->hasMany(Medical_test::class);
+              }
 }
 

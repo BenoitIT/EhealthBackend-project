@@ -18,5 +18,8 @@ class Patient extends Model
          public function Hospital(){
          return $this->belongsTo(Hospital::class);
                         }
+                        public function Test(){
+                            return $this->hasMany(Medical_test::class);
+                          }
                     }
 
