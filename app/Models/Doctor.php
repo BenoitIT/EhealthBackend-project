@@ -28,4 +28,10 @@ class Doctor extends Model
                   public function Test(){
                     return $this->hasMany(Medical_test::class);
                   }
+                  public function medecine(){
+                    return $this->hasMany(Medecine::class);
+                  }
+                  public function medicalreport(){
+                    return $this->hasMany(Medical_report::class);
+                  }
 }

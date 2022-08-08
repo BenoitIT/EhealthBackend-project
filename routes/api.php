@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\newHospitalAdmin;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\HospitalsController;
+use App\Http\Controllers\MedecinesController;
 use App\Http\Controllers\superAdminController;
 use App\Http\Controllers\EmployAuthsController;
 use App\Http\Controllers\MedicalTestsController;
@@ -66,7 +67,9 @@ Route::POST('/test-recording',[MedicalTestsController::class,'store']);
 Route::PATCH('/test-update/{patient}',[MedicalTestsController::class,'update']);
 Route::GET('/tests-for-patient/{patient}',[MedicalTestsController::class,'showtests']);
 Route::GET('/tests-of-hospital/{hospital}',[MedicalTestsController::class,'showtestperHospital']);
-
+Route::POST('/medecine-recording',[MedecinesController::class,'store']);
+Route::PATCH('/medecine-update/{medecine}',[MedecinesController::class,'update']);
+Route::GET('/medecine-list/{doctor}',[MedecinesController::class,'show']);
 
 });
 });
