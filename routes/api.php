@@ -69,7 +69,9 @@ Route::GET('/tests-for-patient/{patient}',[MedicalTestsController::class,'showte
 Route::GET('/tests-of-hospital/{hospital}',[MedicalTestsController::class,'showtestperHospital']);
 Route::POST('/medecine-recording',[MedecinesController::class,'store']);
 Route::PATCH('/medecine-update/{medecine}',[MedecinesController::class,'update']);
-Route::GET('/medecine-list/{doctor}',[MedecinesController::class,'show']);
+Route::GET('/medecine-list',[MedecinesController::class,'show']);
+Route::POST('/generate-report',[ReportsController::class,'store']);
+Route::GET('/reports',[ReportsController::class,'showall']);
 
 });
 });

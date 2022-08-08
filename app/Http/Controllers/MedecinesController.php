@@ -41,9 +41,9 @@ class MedecinesController extends Controller
     else{
         return response(['message'=>'you are not allowed']);
     }}
-    public function show($doctor){
+    public function show(){
         if(auth()->user()->role== 3){
-    $list=DB::table('medecines')->where('doctor_id',$doctor)->get();
+    $list=DB::table('medecines')->where('doctor_id',auth()->user()->id)->get();
     return response([
         'all medicne provided'=>$list
     ]);
