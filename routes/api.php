@@ -54,7 +54,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
 //receptionist
         Route::POST('/new-patient',[PatientController::class,'store']);
  });
- Route::POST('/doctor and rec register',[hospitalWorkerController::class,'store']);
+ Route::POST('/superadminregister',[hospitalWorkerController::class,'store']);
     //superAdmin
     Route::POST('/login',[hospitalWorkerController::class,'loginUser']);
     Route::POST('/hospitalAdmin',[HospitalsController::class,'adminLogin']);
