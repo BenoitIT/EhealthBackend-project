@@ -12,7 +12,6 @@ class MedecinesController extends Controller
         if(auth()->user()->role== 3){
         $request->validate([
             'patient_id'=>'required',
-            'doctor_id'=>'required',
             'hospital_id'=>'required',
             'medecine_name'=>'required',
             'medecineProvision_date'=>'required'

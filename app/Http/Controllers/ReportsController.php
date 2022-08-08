@@ -12,18 +12,19 @@ class ReportsController extends Controller
     public function store(request $request){
         if(auth()->user()->role== 3){
         $patient= DB::table('medecines')->SELECT('patient_id')->where('doctor_id',auth()->user()->id)->latest()->first();
-        $medecine=DB::table('medecines')->SELECT('medecine_id')->where('doctor_id',auth()->user()->id)->latest()->first();
-        $test=DB::table('medical_tests')->SELECT('test_id')->where('doctor_id',auth()->user()->id)->latest()->first();
+        $medecine=DB::table('medecines')->SELECT('id')->where('doctor_id',auth()->user()->id)->latest()->first();
+        $test=DB::table('medical_tests')->SELECT('id')->where('doctor_id',auth()->user()->id)->latest()->first();
 
         Medical_report::create([
-            'patient_id'=>$patient,
+            'patient_id'=>$patient->patient_id,
             'doctor_id'=>auth()->user()->id,
             'hospital_id'=>$request->hospital_id,
-            'test_id'=>$test,
-            'medecine_id'=>$medecine
+            'test_id'=>$test->id,
+            'medecine_id'=>$medecine->id
         ]);
         return response([
-            'report'=>Medical_report::where('patient_id',$patient)->get()
+        'report'=>Medical_report::where('patient_id',$patient->patient_id)->get()
+
         ]);
     }
     else{

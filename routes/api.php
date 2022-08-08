@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\newHospitalAdmin;
 use App\Http\Controllers\PatientController;
+use App\Http\Controllers\ReportsController;
 use App\Http\Controllers\HospitalsController;
 use App\Http\Controllers\MedecinesController;
 use App\Http\Controllers\superAdminController;
@@ -35,24 +36,25 @@ Route::middleware(['auth:sanctum'])->group(function () {
     //hospital admin
           Route::POST('/new-doctor',[hospitalOperatorController::class,'store']);
           Route::PATCH('/update-doctor/{doctor}',[hospitalOperatorController::class,'update']);
-          Route::GET('/list-of-doctors/{hospital}',[hospitalOperatorController::class,'showAll']);
+          Route::GET('/list-of-doctors',[hospitalOperatorController::class,'showAll']);
           Route::DELETE('/delete-doctor/{doctor}',[hospitalOperatorController::class,'deleteDoctor']);
 
 
           Route::POST('/new-receptionist',[hospitalOperatorController::class,'storeRec']);
           Route::PATCH('/update-reciptionist/{reciptionist}',[hospitalOperatorController::class,'updateRec']);
-          Route::GET('/list of reciptionists/{hospital}',[hospitalOperatorController::class,'showAllRec']);
+          Route::GET('/list of reciptionists',[hospitalOperatorController::class,'showAllRec']);
           Route::DELETE('/delete-reciptionist/{reciptionist}',[hospitalOperatorController::class,'deleteRec']);
           Route::GET('/List-of-registered-patients/{hospital}',[hospitalOperatorController::class,'showAllpatient']);
 
           Route::POST('/logout',[hospitalWorkerController::class,'logout']);
-          Route::POST('/doctor and rec register',[hospitalWorkerController::class,'store']);
+
           Route::POST('/new Hospital account',[newHospitalAdmin::class,'store']);
           Route::POST('/new-doctor-account',[newHospitalAdmin::class,'storedoc']);
           Route::POST('/new-receptionist-account',[newHospitalAdmin::class,'storeRec']);
 //receptionist
         Route::POST('/new-patient',[PatientController::class,'store']);
  });
+ Route::POST('/doctor and rec register',[hospitalWorkerController::class,'store']);
     //superAdmin
     Route::POST('/login',[hospitalWorkerController::class,'loginUser']);
     Route::POST('/hospitalAdmin',[HospitalsController::class,'adminLogin']);

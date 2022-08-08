@@ -13,7 +13,6 @@ class MedicalTestsController extends Controller
         if(auth()->user()->role== 3){
    $request->validate([
     'patient_id'=>'required',
-    'doctor_id'=>'required',
     'hospital_id'=>'required',
     'test_name'=>'required',
     'testing_date'=>'required'

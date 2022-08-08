@@ -14,7 +14,7 @@ class hospitalOperatorController extends Controller
     //CREATE DOCTOR
 
     public function store(request $request){
-        if(auth()->user()->role== 1){
+        if(auth()->user()->role== 'admin'){
 
     $request->validate([
         'FirstName'=>'required',
@@ -58,9 +58,9 @@ else{
         return response(['message'=>'you are not allowed to perform this action'],403);
     }}
     //LIST ALL DOCTORS
-    public function showall($hospital){
-        if(auth()->user()->role== 1){
-        $doctors= DB::table('doctors')->where('hospital_id',$hospital)->get();
+    public function showall(){
+        if(auth()->user()->role== 'admin'){
+        $doctors= DB::table('doctors')->where('hospital_id',auth()->user()->id)->get();
         return $doctors;
      return response([
         'list of doctors'=>$doctors
@@ -71,7 +71,7 @@ else{
     }}
     //DELETE SPECIFIC DOCTOR
     public function deleteDoctor($doctor){
-        if(auth()->user()->role== 1){
+        if(auth()->user()->role== 'admin'){
         DB::table('doctors')->where('id',$doctor)->delete();
      return response([
         'list of doctors'=>Doctor::all()
@@ -113,7 +113,7 @@ else{
     }}
      //UPDATE receptionists
      public function updateRec(reciptionist $reciptionist,request $request){
-        if(auth()->user()->role== 1){
+        if(auth()->user()->role== 'admin'){
         $reciptionist->update($request->all());
         return response([
             'updated'=>$reciptionist
@@ -123,9 +123,9 @@ else{
             return response(['message'=>'you are not allowed to perform this action'],403);
         }}
      //LIST ALL reciptionists
-     public function showallRec($hospital){
-        if(auth()->user()->role== 1){
-        $reciptionists= DB::table('reciptionists')->where('hospital_id',$hospital)->get();
+     public function showallRec(){
+        if(auth()->user()->role== 'admin'){
+        $reciptionists= DB::table('reciptionists')->where('hospital_id',auth()->user()->id)->get();
 
      return response([
         'list of receptionists'=>$reciptionists
@@ -145,10 +145,10 @@ else{
 else{
     return response(['message'=>'you are not allowed to perform this action'],403);
 }}
-public function showAllpatient($hospital){
+public function showAllpatient(){
     if(auth()->user()->role=='admin'){
  return response([
-    'patient list'=>Patient::where('hospital_id',$hospital)->get()
+    'patient list'=>Patient::where('hospital_id',auth()->user()->id)->get()
  ]);
 }
 else{
