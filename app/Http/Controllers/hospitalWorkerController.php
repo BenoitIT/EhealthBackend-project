@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -83,6 +84,17 @@ public function store(Request $request)
     return response([
         'status'=>'user created'
     ]);
+}
+public function rolestore(request $request){
+$request->validate([
+    'role_name'=>'required'
+]);
+Role::create([
+    'role_name'=>$request->role_name
+]);
+return response([
+'message'=>'new role added'
+]);
 }
 
 }

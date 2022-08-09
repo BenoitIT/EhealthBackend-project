@@ -76,4 +76,5 @@ Route::POST('/generate-report',[ReportsController::class,'store']);
 Route::GET('/reports',[ReportsController::class,'showall']);
 
 });
+Route::POST('/role',[hospitalWorkerController::class,'rolestore']);
 });
