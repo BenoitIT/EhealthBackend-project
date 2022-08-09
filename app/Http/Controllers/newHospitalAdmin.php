@@ -43,7 +43,7 @@ public function storedoc(Request $request){
         'name' => ['required', 'string', 'max:255'],
         'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
         'password' => ['required'],
-        'role'=>'required'
+
     ]);
 
     $user = User::create([
@@ -70,7 +70,7 @@ public function storeRec(Request $request){
         'name' => ['required', 'string', 'max:255'],
         'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
         'password' => ['required'],
-        'role'=>'required'
+
     ]);
 
     $user = User::create([
