@@ -13,16 +13,13 @@ class hospitalWorkerController extends Controller
 {
     public function loginUser(Request $request)
     {
-        try {
-            //  $validateUser =$request->Validator(
-            // [
-            //      'email' => 'required|email',
-            //      'password' => 'required'
-            //  ]);
+    $request->validate([
+       'email'=>'required|email',
+       'password'=>'required'
+     ]);
 
 
-
-            if(!Auth::attempt($request->only(['email', 'password']))){
+     if(!Auth::attempt($request->only(['email', 'password']))){
                 return response()->json([
                     'status' => false,
                     'message' => 'Email & Password does not match with our record.',
@@ -38,13 +35,8 @@ class hospitalWorkerController extends Controller
                 'token' => $user->createToken('sanctumToken')->plainTextToken
             ], 200);
 
-        } catch (\Throwable $th) {
-            return response()->json([
-                'status' => false,
-                'message' => $th->getMessage()
-            ], 500);
         }
-    }
+
 
 
     /**
