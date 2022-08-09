@@ -96,5 +96,12 @@ return response([
 'message'=>'new role added'
 ]);
 }
+public function allusers()
+{
+    $users= User::all();
+    return response([
+     'message'=>$users
+    ]);
+}
 
 }
