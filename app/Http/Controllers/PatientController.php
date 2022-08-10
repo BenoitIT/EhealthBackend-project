@@ -1,10 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Support\Facades\Auth;
 use App\Models\Patient;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+
 class PatientController extends Controller
 {
  public function store(request $request){
@@ -44,4 +46,11 @@ class PatientController extends Controller
 else{
     return response(['message'=>'this is allowed for anly receptionist']);
 }
-}}
+}
+public function patdelete($id){
+    DB::table('patients')->where('id',$id)->delete();
+    return response([
+        'message'=>'deleted'
+    ]);
+}
+}

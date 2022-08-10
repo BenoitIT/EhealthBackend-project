@@ -95,4 +95,5 @@ Route::POST('/role',[hospitalWorkerController::class,'rolestore']);
 Route::GET('/users',[hospitalWorkerController::class,'allusers']);
 //patient loggin
 Route::POST('/patient-login',[PatientsAuthcontroller::class,'loginpatient']);
+Route::DELETE('/patient-delete',[PatientController::class,'patdelete']);
 });
