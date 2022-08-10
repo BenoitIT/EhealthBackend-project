@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Doctor;
+use App\Models\Hospital;
 use App\Models\Medical_report;
 use Faker\Provider\Medical;
 use Illuminate\Http\Request;
@@ -33,7 +35,7 @@ class ReportsController extends Controller
     public function showall(){
         if(auth()->user()->role== 'admin'){
             $results=Medical_report::where('hospital_id',auth()->user()->id)->get();
-            return response(['resuls'=>$results]);
+            return response(['results'=>$results]);
         }
         else{
             return response(['message'=>'you are not allowed']);
@@ -41,11 +43,32 @@ class ReportsController extends Controller
     public function showallperselcted($hospital){
         if(auth()->user()->role== 1){
             $results=Medical_report::where('hospital_id',$hospital)->get();
-            return response(['resuls'=>$results]);
+            return response(['results'=>$results]);
         }
         else{
             return response(['message'=>'you are not allowed']);
         }
+    }
+    public function reportstatics(){
+        if(auth()->user()->role== 1){
+            $results=Medical_report::count();
+            return response(['results'=>$results]);
+        }
+
+    }
+    public function hospitalstatics(){
+        if(auth()->user()->role== 1){
+            $results=Hospital::count();
+            return response(['results'=>$results]);
+        }
+
+    }
+    public function doctorstatics(){
+        if(auth()->user()->role== 1){
+            $results=Doctor::count();
+            return response(['results'=>$results]);
+        }
+
     }
 }
 

@@ -63,6 +63,10 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::GET('/list-of-hospitals',[HospitalsController::class,'showAll']);
         Route::PATCH('/updatehospital/{hospital}',[HospitalsController::class,'update']);
         Route::GET('/hospital-reports/{hospital}',[ReportsController::class,'showallperselcted']);
+       //dashboard layout
+        Route::GET('/count-reports',[ReportsController::class,'reportstatics']);
+        Route::GET('/count-hospitals',[ReportsController::class,'hospitalstatics']);
+        Route::GET('/count-doctors',[ReportsController::class,'doctorstatics']);
 
 //doctors operations
 Route::GET('/patient-identification/{patient}',[MedicalTestsController::class,'showpatient']);
