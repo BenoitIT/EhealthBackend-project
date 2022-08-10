@@ -12,19 +12,19 @@ class PatientsAuthcontroller extends Controller
     public function loginpatient(Request $request)
     {
     $request->validate([
-       'FirstName'=>'required',
+       'email'=>'required',
        'access_password'=>'required'
      ]);
 
 
-     if(!Auth::attempt($request->only(['FirstName', 'access_password']))){
+     if(!Auth::attempt($request->only(['email', 'access_password']))){
                 return response()->json([
                     'status' => false,
-                    'message' => 'Telephone & access_password does not match with our record.',
+                    'message' => 'email & access_password does not match with our record.',
                 ], 401);
             }
 
-            $patient = Patient::where('FirstName', $request->FirstName)->first();
+            $patient = Patient::where('email', $request->email)->first();
 
             return response()->json([
                 'status' => true,
