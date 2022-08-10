@@ -24,13 +24,13 @@ class PatientsAuthcontroller extends Controller
                 ], 401);
             }
 
-            $user = Patient::where('Telephone', $request->Telephone)->first();
+            $patient = Patient::where('Telephone', $request->Telephone)->first();
 
             return response()->json([
                 'status' => true,
-                'user'=>$user->name,
+                'user'=>$patient->FirstName,
                 'message' => 'User Logged In Successfully',
-                'token' => $user->createToken('sanctumToken')->plainTextToken
+                'token' => $patient->createToken('sanctumToken')->plainTextToken
             ], 200);
 
         }
