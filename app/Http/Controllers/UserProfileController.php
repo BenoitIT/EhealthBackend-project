@@ -13,7 +13,7 @@ class UserProfileController extends Controller
             $request->validate([
                 'profile'=>'required',
                 'profile_description'=>'required',
-                'user_id'=>'required|unique:user_profiles'
+                'user_id'=>'unique:user_profiles'
             ]);
             $profile = User_profile::saveImage($request->file('profile'));
             User_profile::create([
