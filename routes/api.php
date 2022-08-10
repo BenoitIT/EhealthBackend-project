@@ -51,6 +51,10 @@ Route::middleware(['auth:sanctum'])->group(function () {
           Route::POST('/new Hospital account',[newHospitalAdmin::class,'store']);
           Route::POST('/new-doctor-account',[newHospitalAdmin::class,'storedoc']);
           Route::POST('/new-receptionist-account',[newHospitalAdmin::class,'storeRec']);
+          //hosptital statics
+          Route::GET('/reports-number',[HospitalsController::class,'reportstatics']);
+          Route::GET('/doctors-number',[HospitalsController::class,'doctorstatics']);
+          Route::GET('/patients-number',[HospitalsController::class,'patientstatistic']);
 //receptionist
         Route::POST('/new-patient',[PatientController::class,'store']);
  });
@@ -67,6 +71,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::GET('/count-reports',[ReportsController::class,'reportstatics']);
         Route::GET('/count-hospitals',[ReportsController::class,'hospitalstatics']);
         Route::GET('/count-doctors',[ReportsController::class,'doctorstatics']);
+        Route::GET('/count-patients',[ReportsController::class,'patientstatistic']);
 
 //doctors operations
 Route::GET('/patient-identification/{patient}',[MedicalTestsController::class,'showpatient']);

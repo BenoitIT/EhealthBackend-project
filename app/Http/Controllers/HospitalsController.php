@@ -1,7 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Doctor;
+use App\Models\Patient;
 use App\Models\Hospital;
+use App\Models\Medical_report;
+use Faker\Provider\Medical;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -99,4 +103,28 @@ class HospitalsController extends Controller
     return response([
     'message'=>'you are logged out']);
   }
+
+//hospital statistics
+  public function reportstatics(){
+    if(auth()->user()->role== 1){
+        $results=Medical_report::where('hospital_id',auth()->user()->id)->count();
+        return response(['results'=>$results]);
+    }
+
 }
+
+
+public function doctorstatics(){
+    if(auth()->user()->role== 'admin'){
+        $results=Doctor::where('hospital_id',auth()->user()->id)->count();
+        return response(['results'=>$results]);
+    }}
+    public function patientstatistic(){
+        if(auth()->user()->role== 'admin'){
+            $results=Patient::where('hospital_id',auth()->user()->id)->count();
+            return response(['results'=>$results]);
+        }
+
+}
+}
+

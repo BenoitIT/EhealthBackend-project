@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Doctor;
 use App\Models\Hospital;
 use App\Models\Medical_report;
+use App\Models\Patient;
 use Faker\Provider\Medical;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -67,7 +68,12 @@ class ReportsController extends Controller
         if(auth()->user()->role== 1){
             $results=Doctor::count();
             return response(['results'=>$results]);
-        }
+        }}
+        public function patientstatistic(){
+            if(auth()->user()->role== 1){
+                $results=Patient::count();
+                return response(['results'=>$results]);
+            }
 
     }
 }
