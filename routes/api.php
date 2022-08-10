@@ -11,6 +11,7 @@ use App\Http\Controllers\superAdminController;
 use App\Http\Controllers\EmployAuthsController;
 use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\MedicalTestsController;
+use App\Http\Controllers\PatientsAuthcontroller;
 use App\Http\Controllers\hospitalWorkerController;
 use App\Http\Controllers\hospitalOperatorController;
 
@@ -92,4 +93,6 @@ Route::GET('/reports',[ReportsController::class,'showall']);
 });
 Route::POST('/role',[hospitalWorkerController::class,'rolestore']);
 Route::GET('/users',[hospitalWorkerController::class,'allusers']);
+//patient loggin
+Route::POST('/patient-login',[PatientsAuthcontroller::class,'loginpatient']);
 });

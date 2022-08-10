@@ -1,18 +1,19 @@
 <?php
 
 namespace App\Models;
-
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
 
-
-class Patient extends Model
+class Patient extends Authenticatable
 {
-    use HasFactory;
+    use HasFactory,HasApiTokens,Notifiable;
     protected $fillable=['FirstName','LastName',
                         'province','district',
                         'Gender','BirthDate',
-                        'Telephone',
+                        'Telephone','password',
                         'assigned_doctor','hospital_id'];
 
          public function Hospital(){

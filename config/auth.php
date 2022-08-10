@@ -73,6 +73,10 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\Hospital::class,
         ],
+        'patients' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Patient::class,
+        ],
 
 
         // 'users' => [
