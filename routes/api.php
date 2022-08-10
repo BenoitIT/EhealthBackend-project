@@ -9,6 +9,7 @@ use App\Http\Controllers\HospitalsController;
 use App\Http\Controllers\MedecinesController;
 use App\Http\Controllers\superAdminController;
 use App\Http\Controllers\EmployAuthsController;
+use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\MedicalTestsController;
 use App\Http\Controllers\hospitalWorkerController;
 use App\Http\Controllers\hospitalOperatorController;
