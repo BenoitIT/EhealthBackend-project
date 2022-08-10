@@ -74,7 +74,7 @@ Route::POST('/medecine-recording',[MedecinesController::class,'store']);
 Route::PATCH('/medecine-update/{medecine}',[MedecinesController::class,'update']);
 Route::GET('/medecine-list',[MedecinesController::class,'show']);
 Route::POST('/generate-report',[ReportsController::class,'store']);
-Route::GET('/reports',[ReportsController::class,'showall']);
+Route::GET('/reports/{hospital}',[ReportsController::class,'showall']);
 
 });
 Route::POST('/role',[hospitalWorkerController::class,'rolestore']);

@@ -30,9 +30,9 @@ class ReportsController extends Controller
     else{
         return response(['message'=>'you are not allowed']);
     }}
-    public function showall(){
+    public function showall($hospital){
         if(auth()->user()->role== 'admin'){
-            Medical_report::where('hospital_id',auth()->user()->id)->get();
+            Medical_report::where('hospital_id',$hospital)->get();
         }
         else{
             return response(['message'=>'you are not allowed']);
