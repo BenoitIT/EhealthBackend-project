@@ -33,6 +33,9 @@ route::prefix('V1')->group(function(){
 // hospital admin
 
 Route::middleware(['auth:sanctum'])->group(function () {
+         //user profiles
+          Route::POST('/create-profile',[UserProfileController::class,'store']);
+          Route::PATCH('/edit-profile',[UserProfileController::class,'update']);
     //hospital admin
           Route::POST('/new-doctor',[hospitalOperatorController::class,'store']);
           Route::PATCH('/update-doctor/{doctor}',[hospitalOperatorController::class,'update']);

@@ -106,7 +106,7 @@ class HospitalsController extends Controller
 
 //hospital statistics
   public function reportstatics(){
-    if(auth()->user()->role== 1){
+    if(auth()->user()->role== 'admin'){
         $results=Medical_report::where('hospital_id',auth()->user()->id)->count();
         return response(['results'=>$results]);
     }
