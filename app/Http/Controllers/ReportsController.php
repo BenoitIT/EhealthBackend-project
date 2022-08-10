@@ -34,6 +34,16 @@ class ReportsController extends Controller
         if(auth()->user()->role== 'admin'){
             Medical_report::where('hospital_id',auth()->user()->id)->get();
         }
+        else{
+            return response(['message'=>'you are not allowed']);
+        }}
+    public function showallperselcted($hospital){
+        if(auth()->user()->role== 1){
+            Medical_report::where('hospital_id',$hospital)->get();
+        }
+        else{
+            return response(['message'=>'you are not allowed']);
+        }
     }
 }
 

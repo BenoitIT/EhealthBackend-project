@@ -62,6 +62,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::POST('/hospitalregister',[HospitalsController::class,'store']);
         Route::GET('/list-of-hospitals',[HospitalsController::class,'showAll']);
         Route::PATCH('/updatehospital/{hospital}',[HospitalsController::class,'update']);
+        Route::GET('/hospital-reports/{hospital}',[ReportsController::class,'showallperselcted']);
 
 //doctors operations
 Route::GET('/patient-identification/{patient}',[MedicalTestsController::class,'showpatient']);
