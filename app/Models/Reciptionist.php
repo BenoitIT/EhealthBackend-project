@@ -14,7 +14,7 @@ class Reciptionist extends Model
     'Gender',
     'BirthDate','Telephone',
     'reciptionist_Image','hospital_id'];
-     static function saveImage($image,$path='/image')
+     static function saveImage($image,$path='/image/')
                         {
                             $imagename=time().'.'.$image->getClientOriginalExtension();
                             $imagepath=public_path($path);

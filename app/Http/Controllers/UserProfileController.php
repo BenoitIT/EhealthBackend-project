@@ -15,7 +15,7 @@ class UserProfileController extends Controller
                 'profile_description'=>'required',
                 'user_id'=>'unique:user_profiles'
             ]);
-            $profile = $request->profile->store('/profiles', 'public');
+            $profile = User_profile::saveImage($request->file('profile'));
             User_profile::create([
                 'profile'=>$profile,
                 'profile_description'=>$request->profile_description,
@@ -42,6 +42,15 @@ class UserProfileController extends Controller
             $profile=User_profile::where('user_id',auth()->user()->id)->get();
             return response([
                 'results'=>$profile
+            ]);
+        }
+
+    }
+    public function delete(){
+        if(auth()->user()){
+            $profile=User_profile::where('user_id',auth()->user()->id)->delete();
+            return response([
+                'results'=>'delete success'
             ]);
         }
 
