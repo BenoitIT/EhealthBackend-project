@@ -13,11 +13,11 @@ class PatientsAuthcontroller extends Controller
     {
     $request->validate([
        'email'=>'required',
-       'access_password'=>'required'
+       'password'=>'required'
      ]);
 
 
-     if(!Auth::attempt($request->only(['email', 'access_password']))){
+     if(!Auth::attempt($request->only(['email', 'password']))){
                 return response()->json([
                     'status' => false,
                     'message' => 'email & access_password does not match with our record.',

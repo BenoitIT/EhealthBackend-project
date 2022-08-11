@@ -21,7 +21,7 @@ class PatientController extends Controller
             'BirthDate'=>'required',
             'email'=>'required|unique:patients',
             'Telephone'=>'required|min:10|max:10',
-            'access_password'=>'required|min:4|max:8',
+            'password'=>'required|min:4|max:8',
             'assigned_doctor'=>'required',
             'hospital_id'=>'required'
         ]);
@@ -34,7 +34,7 @@ class PatientController extends Controller
             'BirthDate'=>$request->BirthDate,
             'email'=>$request->email,
             'Telephone'=>$request->Telephone,
-            'access_password'=>hash::make($request->access_password),
+            'password'=>hash::make($request->password),
             'assigned_doctor'=>$request->assigned_doctor,
             'hospital_id'=>$request->hospital_id
         ]);
