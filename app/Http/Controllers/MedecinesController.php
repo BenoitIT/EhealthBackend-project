@@ -42,7 +42,7 @@ class MedecinesController extends Controller
     }}
     public function show(){
         if(auth()->user()->role== 3){
-    $list=DB::table('medecines')->where('doctor_id',auth()->user()->id)->get()->orderBy('id','desc');
+    $list=DB::table('medecines')->where('doctor_id',auth()->user()->id)->orderBy('id','desc')->get();
     return response([
         'all medicne provided'=>$list
     ]);
