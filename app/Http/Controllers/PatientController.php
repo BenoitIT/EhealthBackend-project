@@ -71,5 +71,11 @@ public function testdelete($id){
         'message'=>'deleted'
     ]);
 }
+public function all($id){
+
+    return response([
+        'message'=>  Patient::all()
+    ]);
+}
 
 }
