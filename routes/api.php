@@ -25,7 +25,7 @@ use App\Http\Controllers\hospitalOperatorController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-route::prefix('V1')->group(function(){
+route::prefix('health')->group(function(){
          route::get('/start',function(){
              return 'welcome back';
                             });
@@ -62,6 +62,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
           Route::GET('/patients-number',[HospitalsController::class,'patientstatistic']);
 //receptionist
         Route::POST('/new-patient',[PatientController::class,'store']);
+        Route::GET('/all-patients',[PatientController::class,'all']);
  });
  Route::POST('/superadminregister',[hospitalWorkerController::class,'store']);
     //superAdmin
@@ -83,21 +84,20 @@ Route::GET('/patient-identification/{patient}',[MedicalTestsController::class,'s
 Route::POST('/test-recording',[MedicalTestsController::class,'store']);
 Route::PATCH('/test-update/{patient}',[MedicalTestsController::class,'update']);
 Route::GET('/tests-for-patient/{patient}',[MedicalTestsController::class,'showtests']);
-Route::GET('/tests-of-hospital/{hospital}',[MedicalTestsController::class,'showtestperHospital']);
+Route::GET('/tests-of-hospital',[MedicalTestsController::class,'showtestperHospital']);
 Route::POST('/medecine-recording',[MedecinesController::class,'store']);
 Route::PATCH('/medecine-update/{medecine}',[MedecinesController::class,'update']);
 Route::GET('/medecine-list',[MedecinesController::class,'show']);
 Route::POST('/generate-report',[ReportsController::class,'store']);
 Route::GET('/reports',[ReportsController::class,'showall']);
 
+//patients
+Route::GET('/report-patient',[ReportsController::class,'patienreport']);
+
 });
 Route::POST('/role',[hospitalWorkerController::class,'rolestore']);
 Route::GET('/users',[hospitalWorkerController::class,'allusers']);
 //patient loggin
 Route::POST('/patient-login',[PatientsAuthcontroller::class,'loginpatient']);
-Route::DELETE('/patient-delete/{id}',[PatientController::class,'patdelete']);
-Route::DELETE('/report-delete/{id}',[PatientController::class,'repdelete']);
-Route::DELETE('/med-delete/{id}',[PatientController::class,'meddelete']);
-Route::DELETE('/test-delete/{id}',[PatientController::class,'testdelete']);
-Route::GET('/all',[PatientController::class,'all']);
+
 });

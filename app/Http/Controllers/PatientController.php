@@ -47,34 +47,12 @@ else{
     return response(['message'=>'this is allowed for anly receptionist']);
 }
 }
-public function patdelete($id){
-    DB::table('patients')->where('id',$id)->delete();
-    return response([
-        'message'=>'deleted'
-    ]);
-}
-public function repdelete($id){
-    DB::table('medical_reports')->where('patient_id',$id)->delete();
-    return response([
-        'message'=>'deleted'
-    ]);
-}
-public function meddelete($id){
-    DB::table('medecines')->where('patient_id',$id)->delete();
-    return response([
-        'message'=>'deleted'
-    ]);
-}
-public function testdelete($id){
-    DB::table('medical_tests')->where('patient_id',$id)->delete();
-    return response([
-        'message'=>'deleted'
-    ]);
-}
+
+
 public function all(){
 
     return response([
-        'message'=> Patient::all()
+        'message'=> Patient::all()->orderBy('id','desc')
     ]);
 }
 

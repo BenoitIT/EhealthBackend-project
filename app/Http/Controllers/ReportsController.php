@@ -76,5 +76,19 @@ class ReportsController extends Controller
             }
 
     }
+    public function patienreport(){
+        if(auth()->user()){
+           $result = DB::table('medical_reports')->where('patient_id',auth()->user()->id)->orderBy('id','desc');
+           if($result){
+            return response([
+                'results'=> $result
+            ]);
+           }
+           else{
+            return response(['message'=>'no report found']);
+           }
+
+        }
+    }
 }
 
