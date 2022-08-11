@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Auth\Events\Registered;
@@ -31,7 +32,7 @@ class hospitalWorkerController extends Controller
             return response()->json([
                 'status' => true,
                 'user'=>$user->name,
-                'assigned_role'=>$user->role->role_id,
+                'assigned_role'=>DB::table('roles')->select('role_name')->where('user_id',auth()->user()->id),
                 'message' => 'User Logged In Successfully',
                 'token' => $user->createToken('sanctumToken')->plainTextToken
             ], 200);
