@@ -37,4 +37,13 @@ class UserProfileController extends Controller
         }
 
     }
+    public function show(){
+        if(auth()->user()){
+            $profile=User_profile::where('id',auth()->user()->id)->get();
+            return response([
+                'results'=>$profile
+            ]);
+        }
+
+    }
 }

@@ -38,6 +38,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
          //user profiles
           Route::POST('/create-profile',[UserProfileController::class,'store']);
           Route::PATCH('/edit-profile',[UserProfileController::class,'update']);
+          Route::GET('/profile',[UserProfileController::class,'show']);
     //hospital admin
           Route::POST('/new-doctor',[hospitalOperatorController::class,'store']);
           Route::PATCH('/update-doctor/{doctor}',[hospitalOperatorController::class,'update']);
