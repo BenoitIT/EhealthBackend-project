@@ -71,10 +71,10 @@ public function testdelete($id){
         'message'=>'deleted'
     ]);
 }
-public function all($id){
+public function all(){
 
     return response([
-        'message'=>  Patient::all()
+        'message'=> Patient::all()
     ]);
 }
 
