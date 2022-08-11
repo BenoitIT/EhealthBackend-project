@@ -15,7 +15,7 @@ class UserProfileController extends Controller
                 'profile_description'=>'required',
                 'user_id'=>'unique:user_profiles'
             ]);
-            $profile = User_profile::saveImage($request->file('profile'));
+            $profile = $request->profile->store('/profiles', 'public');
             User_profile::create([
                 'profile'=>$profile,
                 'profile_description'=>$request->profile_description,
