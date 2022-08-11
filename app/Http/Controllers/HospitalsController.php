@@ -77,7 +77,7 @@ class HospitalsController extends Controller
 
     public function AdminLogin(request $request){
     $request->validate([
-        'hospital_email'=>'required',
+        'hospital_email'=>'required|email',
         'password'=>'required'
     ]);
     if(Auth()->guard('Hospital')->attempt([
