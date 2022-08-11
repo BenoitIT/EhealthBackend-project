@@ -31,7 +31,7 @@ class hospitalWorkerController extends Controller
             return response()->json([
                 'status' => true,
                 'user'=>$user->name,
-                'assigned_role'=>$user->role()->role_name,
+                'assigned_role'=>$user->role->role_name,
                 'message' => 'User Logged In Successfully',
                 'token' => $user->createToken('sanctumToken')->plainTextToken
             ], 200);
