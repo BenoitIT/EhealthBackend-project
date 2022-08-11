@@ -32,7 +32,7 @@ class hospitalWorkerController extends Controller
             return response()->json([
                 'status' => true,
                 'user'=>$user->name,
-                'assigned_role'=>DB::table('roles')->select('role_name')->where('user_id',auth()->user()->id),
+                'assigned_role'=>DB::table('roles')->select('role_name')->where('user_id',$user->id),
                 'message' => 'User Logged In Successfully',
                 'token' => $user->createToken('sanctumToken')->plainTextToken
             ], 200);
