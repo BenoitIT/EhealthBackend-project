@@ -52,7 +52,7 @@ else{
 public function all(){
 
     return response([
-        'message'=> Patient::all()->orderBy('id','desc')
+        'message'=> Patient::orderBy('id','desc')->get()
     ]);
 }
 
