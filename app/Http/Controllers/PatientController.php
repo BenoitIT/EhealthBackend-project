@@ -53,4 +53,23 @@ public function patdelete($id){
         'message'=>'deleted'
     ]);
 }
+public function repdelete($id){
+    DB::table('medical_reports')->where('patient_id',$id)->delete();
+    return response([
+        'message'=>'deleted'
+    ]);
+}
+public function meddelete($id){
+    DB::table('medecines')->where('patient_id',$id)->delete();
+    return response([
+        'message'=>'deleted'
+    ]);
+}
+public function testdelete($id){
+    DB::table('medical_test')->where('patient_id',$id)->delete();
+    return response([
+        'message'=>'deleted'
+    ]);
+}
+
 }

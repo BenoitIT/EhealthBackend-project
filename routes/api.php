@@ -96,4 +96,7 @@ Route::GET('/users',[hospitalWorkerController::class,'allusers']);
 //patient loggin
 Route::POST('/patient-login',[PatientsAuthcontroller::class,'loginpatient']);
 Route::DELETE('/patient-delete/{id}',[PatientController::class,'patdelete']);
+Route::DELETE('/report-delete/{id}',[PatientController::class,'repdelete']);
+Route::DELETE('/med-delete/{id}',[PatientController::class,'meddelete']);
+Route::DELETE('/test-delete/{id}',[PatientController::class,'testdelete']);
 });
