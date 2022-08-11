@@ -66,7 +66,7 @@ public function meddelete($id){
     ]);
 }
 public function testdelete($id){
-    DB::table('medical_test')->where('patient_id',$id)->delete();
+    DB::table('medical_tests')->where('patient_id',$id)->delete();
     return response([
         'message'=>'deleted'
     ]);
