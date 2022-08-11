@@ -13,10 +13,10 @@ class User_profile extends Model
         return $this->belongsTo(User::class);
     }
            static function saveImage($image,$path='/image')
-                        {
-                            $imagename=time().'.'.$image->getClientOriginalExtension();
-                            $imagepath=public_path($path);
+        {
+                            $imagename = time().'.'.$image->getClientOriginalExtension();
+                            $imagepath = public_path($path);
                             $image->move($imagepath,$imagename);
                             return $path.$imagename;
-                        }
+    }
 }
