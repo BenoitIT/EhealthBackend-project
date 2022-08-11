@@ -39,7 +39,7 @@ class UserProfileController extends Controller
     }
     public function show(){
         if(auth()->user()){
-            $profile=User_profile::where('id',auth()->user()->id)->get();
+            $profile=User_profile::where('user_id',auth()->user()->id)->get();
             return response([
                 'results'=>$profile
             ]);
