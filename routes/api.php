@@ -9,7 +9,9 @@ use App\Http\Controllers\HospitalsController;
 use App\Http\Controllers\MedecinesController;
 use App\Http\Controllers\superAdminController;
 use App\Http\Controllers\EmployAuthsController;
+use App\Http\Controllers\suggestionsController;
 use App\Http\Controllers\UserProfileController;
+use App\Http\Controllers\MedicalBlogsController;
 use App\Http\Controllers\MedicalTestsController;
 use App\Http\Controllers\PatientsAuthcontroller;
 use App\Http\Controllers\hospitalWorkerController;
@@ -75,6 +77,9 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::GET('/list-of-hospitals',[HospitalsController::class,'showAll']);
         Route::PATCH('/updatehospital/{hospital}',[HospitalsController::class,'update']);
         Route::GET('/hospital-reports/{hospital}',[ReportsController::class,'showallperselcted']);
+        Route::POST('/create-blog',[MedicalBlogsController::class,'store']);
+        Route::DELETE('/delete-blog/{blog}',[MedicalBlogsController::class,'delete']);
+        Route::GET('/suggestions',[suggestionsController::class,'show']);
        //dashboard layout
         Route::GET('/count-reports',[ReportsController::class,'reportstatics']);
         Route::GET('/count-hospitals',[ReportsController::class,'hospitalstatics']);
@@ -101,5 +106,7 @@ Route::POST('/role',[hospitalWorkerController::class,'rolestore']);
 Route::GET('/users',[hospitalWorkerController::class,'allusers']);
 //patient loggin
 Route::POST('/patient-login',[PatientsAuthcontroller::class,'loginpatient']);
-
+//some landing page contents
+Route::GET('/blogs',[MedicalBlogsController::class,'show']);
+Route::POST('/suggest',[suggestionsController::class,'store']);
 });
