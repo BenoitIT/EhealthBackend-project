@@ -23,10 +23,9 @@ class hospitalOperatorController extends Controller
         'doctor_Gender'=>'required',
         'BirthDate'=>'required',
         'Telephone'=>'required|max:10|min:10',
-        'doctor_Image'=>'required',
         'hospital_id'=>'required'
     ]);
-    $doctorImage = $request->file('doctor_Image')->storeOnCloudinary();
+    $doctorImage = $request->string('doctor_Image')->storeOnCloudinary();
     Doctor::create([
         'FirstName'=>$request->FirstName,
         'LastName'=>$request->LastName,
