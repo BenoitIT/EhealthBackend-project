@@ -25,7 +25,7 @@ class hospitalOperatorController extends Controller
         'Telephone'=>'required|max:10|min:10',
         'hospital_id'=>'required'
     ]);
-    $doctorImage = $request->file('doctor_Image')->storeOnCloudinary();
+    $doctorImage = cloudinary()->uploadFile($request->file('doctor_Image')->getRealPath())->getSecurePath();
     Doctor::create([
         'FirstName'=>$request->FirstName,
         'LastName'=>$request->LastName,
@@ -92,7 +92,7 @@ else{
             'reciptionist_Image'=>'required',
             'hospital_id'=>'required'
         ]);
-       $reciptionist_Image = Reciptionist::saveImage($request->file('reciptionist_Image'));
+       $reciptionist_Image = cloudinary()->uploadFile($request->file('reciptionist_Image')->getRealPath())->getSecurePath();
         Reciptionist::create([
             'FirstName'=>$request->FirstName,
             'LastName'=>$request->LastName,
