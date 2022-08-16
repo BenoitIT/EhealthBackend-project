@@ -10,21 +10,20 @@ class UserProfileController extends Controller
     //
     public function store(request $request){
         if(auth()->user()){
-            // $request->validate([
-            //     'profile'=>'required',
-            //     'profile_description'=>'required',
-            //     'user_id'=>'unique:user_profiles'
-            // ]);
+            $request->validate([
+                'profile'=>'required',
+                'profile_description'=>'required',
+                'user_id'=>'unique:user_profiles'
+            ]);
             $profile = $request->file('profile')->storeOnCloudinary();
-            return $profile;
-            // User_profile::create([
-            //     'profile'=>$profile,
-            //     'profile_description'=>$request->profile_description,
-            //     'user_id'=>auth()->user()->id
-            // ]);
-            // return response([
-            //     'message'=>'user profile created'
-            // ]);
+            User_profile::create([
+                'profile'=>$profile,
+                'profile_description'=>$request->profile_description,
+                'user_id'=>auth()->user()->id
+            ]);
+            return response([
+                'message'=>'user profile created'
+            ]);
         }
 
     }
