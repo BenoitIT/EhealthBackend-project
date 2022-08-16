@@ -15,7 +15,7 @@ class UserProfileController extends Controller
                 'profile_description'=>'required',
                 'user_id'=>'unique:user_profiles'
             ]);
-            $profile = $request->string('profile')->storeOnCloudinary();
+            $profile = $request->file('profile')->storeOnCloudinary();
             User_profile::create([
                 'profile'=>$profile,
                 'profile_description'=>$request->profile_description,
