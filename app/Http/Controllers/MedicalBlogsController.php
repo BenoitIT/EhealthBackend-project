@@ -11,7 +11,7 @@ class MedicalBlogsController extends Controller
     public function store(request $request){
         if(auth()->user()->role== 1){
         $request->validate([
-            'Title'=>'required',
+            'title'=>'required',
             'blog_file'=>'required',
             'description'=>'required'
         ]);
