@@ -30,7 +30,7 @@ class MedicalBlogsController extends Controller
     }
     }
     public function show(){
-        $blogs= Medical_blog::all()->paginate(4);
+        $blogs= Medical_blog::paginate(4);
         return response([
             'blogs'=>$blogs
         ]);
