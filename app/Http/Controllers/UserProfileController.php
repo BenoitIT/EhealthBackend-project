@@ -15,7 +15,7 @@ class UserProfileController extends Controller
                 'profile_description'=>'required',
                 'user_id'=>'unique:user_profiles'
             ]);
-            $profile = $request->file('profile')->storeOnCloudinary();
+            $profile = cloudinary()->uploadFile($request->file('profile')->getRealPath())->getSecurePath();
             User_profile::create([
                 'profile'=>$profile,
                 'profile_description'=>$request->profile_description,
