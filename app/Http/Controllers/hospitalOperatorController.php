@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Doctor;
 use App\Models\Patient;
 use App\Models\Reciptionist;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class hospitalOperatorController extends Controller
 {
@@ -22,7 +24,8 @@ class hospitalOperatorController extends Controller
         'doctor_email'=>'required|email',
         'doctor_Gender'=>'required',
         'BirthDate'=>'required',
-        'Telephone'=>'required|max:10|min:10',
+        'password'=>'required',
+        'Telephone'=>'required|max:10|min:10'
        // 'doctor_Image'=>'required'
  ]);
     //$doctorImage = cloudinary()->uploadFile($request->file('doctor_Image')->getRealPath())->getSecurePath();
@@ -35,6 +38,12 @@ class hospitalOperatorController extends Controller
         'Telephone'=>$request->Telephone,
         'doctor_Image'=> 'image',
         'hospital_id'=>auth()->user()->id
+    ]);
+    User::create([
+        'name' => $request->FirstName,
+        'email' => $request->doctor_email,
+        'password' => Hash::make($request->password),
+        'role'=> 3
     ]);
     return response([
         'message'=>'new doctor is saved successfully',
@@ -89,6 +98,7 @@ else{
             'Gender'=>'required',
             'BirthDate'=>'required',
             'Telephone'=>'required|max:10|min:10',
+            'password'=>'required'
             //'reciptionist_Image'=>'required'
         ]);
       // $reciptionist_Image = cloudinary()->uploadFile($request->file('reciptionist_Image')->getRealPath())->getSecurePath();
@@ -102,8 +112,15 @@ else{
             'reciptionist_Image'=>'image',
             'hospital_id'=>auth()->user()->id
         ]);
+         User::create([
+            'name' => $request->FirstName,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'role'=> 4
+        ]);
+
         return response([
-            'message'=>'new receptionist is saved successfully'
+            'message'=>'new receptionist is saved successfully as well as his/her own user account created'
         ]);
     }
     else{
