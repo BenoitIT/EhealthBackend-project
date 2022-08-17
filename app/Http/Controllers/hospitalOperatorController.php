@@ -22,9 +22,8 @@ class hospitalOperatorController extends Controller
         'doctor_email'=>'required|email',
         'doctor_Gender'=>'required',
         'BirthDate'=>'required',
-        'Telephone'=>'required|max:10|min:10',
-        'hospital_id'=>'required'
-    ]);
+        'Telephone'=>'required|max:10|min:10'
+ ]);
     $doctorImage = cloudinary()->uploadFile($request->file('doctor_Image')->getRealPath())->getSecurePath();
     Doctor::create([
         'FirstName'=>$request->FirstName,
@@ -34,7 +33,7 @@ class hospitalOperatorController extends Controller
         'BirthDate'=>$request->BirthDate,
         'Telephone'=>$request->Telephone,
         'doctor_Image'=> $doctorImage,
-        'hospital_id'=>$request->hospital_id
+        'hospital_id'=>auth()->user()->id
     ]);
     return response([
         'message'=>'new doctor is saved successfully',
@@ -89,8 +88,7 @@ else{
             'Gender'=>'required',
             'BirthDate'=>'required',
             'Telephone'=>'required|max:10|min:10',
-            'reciptionist_Image'=>'required',
-            'hospital_id'=>'required'
+            'reciptionist_Image'=>'required'
         ]);
        $reciptionist_Image = cloudinary()->uploadFile($request->file('reciptionist_Image')->getRealPath())->getSecurePath();
         Reciptionist::create([
@@ -101,7 +99,7 @@ else{
             'BirthDate'=>$request->BirthDate,
             'Telephone'=>$request->Telephone,
             'reciptionist_Image'=>$reciptionist_Image,
-            'hospital_id'=>$request->hospital_id
+            'hospital_id'=>auth()->user()->id
         ]);
         return response([
             'message'=>'new receptionist is saved successfully'
