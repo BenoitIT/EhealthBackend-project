@@ -23,9 +23,9 @@ class hospitalOperatorController extends Controller
         'doctor_Gender'=>'required',
         'BirthDate'=>'required',
         'Telephone'=>'required|max:10|min:10',
-        'doctor_Image'=>'required'
+       // 'doctor_Image'=>'required'
  ]);
-    $doctorImage = cloudinary()->uploadFile($request->file('doctor_Image')->getRealPath())->getSecurePath();
+    //$doctorImage = cloudinary()->uploadFile($request->file('doctor_Image')->getRealPath())->getSecurePath();
     Doctor::create([
         'FirstName'=>$request->FirstName,
         'LastName'=>$request->LastName,
@@ -33,7 +33,7 @@ class hospitalOperatorController extends Controller
         'doctor_Gender'=>$request->doctor_Gender,
         'BirthDate'=>$request->BirthDate,
         'Telephone'=>$request->Telephone,
-        'doctor_Image'=> $doctorImage,
+        'doctor_Image'=> 'image',
         'hospital_id'=>auth()->user()->id
     ]);
     return response([
@@ -89,9 +89,9 @@ else{
             'Gender'=>'required',
             'BirthDate'=>'required',
             'Telephone'=>'required|max:10|min:10',
-            'reciptionist_Image'=>'required'
+            //'reciptionist_Image'=>'required'
         ]);
-       $reciptionist_Image = cloudinary()->uploadFile($request->file('reciptionist_Image')->getRealPath())->getSecurePath();
+      // $reciptionist_Image = cloudinary()->uploadFile($request->file('reciptionist_Image')->getRealPath())->getSecurePath();
         Reciptionist::create([
             'FirstName'=>$request->FirstName,
             'LastName'=>$request->LastName,
@@ -99,7 +99,7 @@ else{
             'Gender'=>$request->Gender,
             'BirthDate'=>$request->BirthDate,
             'Telephone'=>$request->Telephone,
-            'reciptionist_Image'=>$reciptionist_Image,
+            'reciptionist_Image'=>'image',
             'hospital_id'=>auth()->user()->id
         ]);
         return response([
