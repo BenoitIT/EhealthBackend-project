@@ -22,7 +22,8 @@ class hospitalOperatorController extends Controller
         'doctor_email'=>'required|email',
         'doctor_Gender'=>'required',
         'BirthDate'=>'required',
-        'Telephone'=>'required|max:10|min:10'
+        'Telephone'=>'required|max:10|min:10',
+        'doctor_Image'=>'required'
  ]);
     $doctorImage = cloudinary()->uploadFile($request->file('doctor_Image')->getRealPath())->getSecurePath();
     Doctor::create([
