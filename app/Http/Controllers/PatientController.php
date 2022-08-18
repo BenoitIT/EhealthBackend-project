@@ -22,8 +22,7 @@ class PatientController extends Controller
             'email'=>'required|unique:patients',
             'Telephone'=>'required|min:10|max:10',
             'password'=>'required|min:4|max:8',
-            'assigned_doctor'=>'required',
-            'hospital_id'=>'required'
+    
         ]);
         Patient::create([
             'FirstName'=>$request->FirstName,
@@ -35,8 +34,7 @@ class PatientController extends Controller
             'email'=>$request->email,
             'Telephone'=>$request->Telephone,
             'password'=>hash::make($request->password),
-            'assigned_doctor'=>$request->assigned_doctor,
-            'hospital_id'=>$request->hospital_id
+
         ]);
         return response([
             'message'=>'patient is registered successfully'

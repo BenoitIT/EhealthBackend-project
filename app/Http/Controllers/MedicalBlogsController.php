@@ -36,7 +36,7 @@ class MedicalBlogsController extends Controller
         ]);
 
     }
-    public function delete(Medical_blog $blog){
+    public function delete($blog){
         if(auth()->user()->role== 1){
     Medical_blog::where('id',$blog)->delete();
     return response([
