@@ -12,8 +12,8 @@ class Patient extends Authenticatable
     protected $fillable=['FirstName','LastName',
                         'province','district',
                         'Gender','BirthDate',
-                        'Telephone','email','password',
-                        'assigned_doctor','hospital_id'];
+                        'Telephone','email','password'
+                        ];
 
          public function Hospital(){
          return $this->belongsTo(Hospital::class);
