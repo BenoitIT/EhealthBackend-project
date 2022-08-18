@@ -15,7 +15,7 @@ class MedicalBlogsController extends Controller
             'blog_file'=>'required',
             'description'=>'required'
         ]);
-        $BlogFile = Medical_blog::saveBlogs($request->file('blog_file'));
+        $BlogFile = cloudinary()->uploadFile($request->file('blog_file')->getRealPath())->getSecurePath();
         Medical_blog::create([
             'title'=>$request->title,
             'blog_file'=> $BlogFile,
