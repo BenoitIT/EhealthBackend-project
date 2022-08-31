@@ -87,7 +87,7 @@ else{
              $fid=$id->id;
              $medicalHistory = Medical_report::where('patient_id',$fid)->get();
              $doctorName=DB::table('medecine')->select('doctor_id')->where('patient_id',$fid)->get();
-             $doc=$doctorName->Doctor->FirstName;
+             $doc=$doctorName->FirstName;
         return response([
             'message'=>'Patient identification',
             'Details'=>$patientname,
