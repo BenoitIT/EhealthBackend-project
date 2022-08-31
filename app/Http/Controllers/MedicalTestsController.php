@@ -49,15 +49,11 @@ else{
     }}
     public function showtests($patient){
         if(auth()->user()->role== 3){
-        $patientname = DB::table('patients')
-             ->select('FirstName','LastName')
-             ->where('id', $patient)
-             ->first();
-        $targettPatient=DB::table('medical_tests')->where('patient_id',$patient)->get();
-        return response([
-            'message'=>'list of tests made by:', $patientname,
-            'Medical tests'=>$targettPatient
-        ]);
+
+        // return response([
+        //     'message'=>'list of tests made by:', $patientname,
+        //     'Medical tests'=>$targettPatient
+        // ]);
     }
     else{
         return response(['message'=>'you are not allowed']);
@@ -86,6 +82,11 @@ else{
              $id= DB::table('patients')->select('id')->where('Telephone', $patient)->first();
              $fid=$id->id;
              $medicalHistory = Medical_report::with('Doctor','Medecine','Hospital')->where('patient_id',$fid)->latest()->get();
+             $patientname = DB::table('patients')
+             ->select('FirstName','LastName')
+             ->where('Telephone', $patient)
+             ->first();
+          $targettPatient=DB::table('medical_tests')->select('test_name','testing_date')->where('Telephone',$patient)->get();
              $reports=[];
              foreach($medicalHistory as $report){
            array_push($reports,[
@@ -100,7 +101,8 @@ else{
               ]);
              return response(['message'=>'Patient identification',
              'Details'=>$patientname,
-             'list'=>$reports]);
+             'list'=>$reports,
+            'medical test passed'=> $targettPatient]);
             }
 
 }
