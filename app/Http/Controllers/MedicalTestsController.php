@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Patient;
+use Faker\Provider\Medical;
 use App\Models\Medical_test;
 use Illuminate\Http\Request;
+use App\Models\Medical_report;
 use Illuminate\Support\Facades\DB;
 
 class MedicalTestsController extends Controller
@@ -78,13 +80,17 @@ else{
     public function showpatient($patient){
         if(auth()->user()->role== 3){
         $patientname = DB::table('patients')
-             ->select('id','FirstName','LastName','province','Gender','BirthDate','Telephone')
+             ->select('FirstName','LastName','province','Gender','BirthDate','Telephone')
              ->where('Telephone', $patient)
              ->first();
+             $id= DB::table('patients')->select('id')->where('Telephone', $patient);
+             $medicalHistory = Medical_report::where('patient_id',$id)->get();
         return response([
             'message'=>'Patient identification',
-            'Details'=>$patientname
+            'Details'=>$patientname,
+            'medical attendance history'=>$medicalHistory
         ]);
+
     }
 else{
     return response(['message'=>'you are not allowed']);
