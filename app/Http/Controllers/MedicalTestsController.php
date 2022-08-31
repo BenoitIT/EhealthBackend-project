@@ -87,10 +87,11 @@ else{
              $fid=$id->id;
              $medicalHistory = Medical_report::with('Doctor','Medecine','Hospital')->where('patient_id',$fid)->get();
              //$name=$medicalHistory->doctor->FirstName;
+             $medicalHistory->pluck('FirstName');
             return response([
             'message'=>'Patient identification',
             'Details'=>$patientname,
-            'medical attendance history'=>$medicalHistory,
+            'medical attendance history'=>$medicalHistory->pluck('FirstName'),
 
 
         ]);
