@@ -38,13 +38,13 @@ class ReportsController extends Controller
             $reports=Medical_report::with('Doctor','Medecine','Patient')->where('hospital_id',auth()->user()->id)->get();
              foreach($reports as $report){
             return response(['report_id'=>$reports->id,
-                             'doctor_Firstname'=>$reports->doctor->FirstName ,
-                             'doctor_Lastname'=>$reports->doctor->LastName ,
-                             'doctor_Firstname'=>$reports->doctor->FirstName ,
-                             'Medecine_name'=>$reports->medecine->medecine_name ,
-                             'patient_Firstname'=>$reports->patient->FirstName ,
-                             'patient_lastname'=>$reports->patient->LastName ,
-                             'created at'=>$reports->created_at ,
+                             'doctor_Firstname'=>$report->doctor->FirstName ,
+                             'doctor_Lastname'=>$report->doctor->LastName ,
+                             'doctor_Firstname'=>$report->doctor->FirstName ,
+                             'Medecine_name'=>$report->medecine->medecine_name ,
+                             'patient_Firstname'=>$report->patient->FirstName ,
+                             'patient_lastname'=>$report->patient->LastName ,
+                             'created at'=>$report->created_at ,
                              ]);
         }
         }
