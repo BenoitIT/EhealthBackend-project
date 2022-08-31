@@ -86,7 +86,7 @@ else{
              ->select('FirstName','LastName')
              ->where('Telephone', $patient)
              ->first();
-          $targettPatient=DB::table('medical_tests')->select('test_name','testing_date')->where('Telephone',$patient)->get();
+          $targettPatient=DB::table('medical_tests')->select('test_name','testing_date')->where('patient_id',$fid)->get();
              $reports=[];
              foreach($medicalHistory as $report){
            array_push($reports,[
