@@ -18,4 +18,7 @@ class Medical_test extends Model
     public function Hospital(){
         return $this->belongsTo(Hospital::class);
     }
+    public function report(){
+        return $this->hasMany(Medical_report::class);
+    }
 }
