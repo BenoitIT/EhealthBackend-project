@@ -84,11 +84,11 @@ else{
              ->where('Telephone', $patient)
              ->first();
              $id= DB::table('patients')->pluck('id')->where('Telephone', $patient);
-             $medicalHistory = Medical_report::where('patient_id',$id)->get();
+             //$medicalHistory = Medical_report::where('patient_id',$id)->get();
         return response([
             'message'=>'Patient identification',
             'Details'=>$patientname,
-            'medical attendance history'=>$medicalHistory
+            'medical attendance history'=>$id
         ]);
 
     }
