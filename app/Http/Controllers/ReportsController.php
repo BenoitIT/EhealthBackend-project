@@ -43,7 +43,7 @@ class ReportsController extends Controller
                     array_push($response,['report_id'=>$report->id,
                     'doctor_Firstname'=>$report->doctor->FirstName ,
                     'doctor_Lastname'=>$report->doctor->LastName ,
-                    'doctor_Firstname'=>$report->doctor->FirstName ,
+                    'doctor_email'=>$report->doctor->doctor_email ,
                     'Medecine_name'=>$report->medecine->medecine_name ,
                     'patient_Firstname'=>$report->patient->FirstName ,
                     'patient_lastname'=>$report->patient->LastName ,
@@ -93,17 +93,28 @@ class ReportsController extends Controller
     }
     public function patienreport(){
         if(auth()->user()){
-           $result = DB::table('medical_reports')->where('patient_id',auth()->user()->id)->orderBy('id','desc');
-           if($result){
-            return response([
-                'results'=> $result
-            ]);
-           }
+            $reports=Medical_report::with('Doctor','Medecine','Patient')->where('patient_id',auth()->user()->id)->get();
+
+            $response = [];
+
+            foreach($reports as $report){
+                    array_push($response,['report_id'=>$report->id,
+                    'patient_Firstname'=>$report->patient->FirstName ,
+                    'patient_lastname'=>$report->patient->LastName ,
+                    'doctor_Firstname'=>$report->doctor->FirstName ,
+                    'doctor_email'=>$report->doctor->doctor_email ,
+                    'Medecine_name'=>$report->medecine->medecine_name ,
+                    'created at'=>$report->created_at ,
+                ]);
+            }
+
+            return $response;
+        }
            else{
             return response(['message'=>'no report found']);
            }
 
         }
     }
-}
+
 

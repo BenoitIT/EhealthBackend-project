@@ -47,24 +47,13 @@ else{
     else{
         return response(['message'=>'you are not allowed']);
     }}
-    public function showtests($patient){
-        if(auth()->user()->role== 3){
-
-        // return response([
-        //     'message'=>'list of tests made by:', $patientname,
-        //     'Medical tests'=>$targettPatient
-        // ]);
-    }
-    else{
-        return response(['message'=>'you are not allowed']);
-    }}
     public function showtestperHospital(){
         if(auth()->user()->role== 'admin'){
         $hospitalname = DB::table('hospitals')
              ->select('hospital_name')
              ->where('id', auth()->user()->id)
              ->first();
-        $targettHospital=DB::table('medical_tests')->where('hospital_id',auth()->user()->id)->get();
+        $targettHospital=DB::table('medical_tests')->select('id','test_name','testing_date')->where('hospital_id',auth()->user()->id)->get();
         return response([
             'message'=>'list of tests made by:', $hospitalname,
             'Medical tests'=>$targettHospital

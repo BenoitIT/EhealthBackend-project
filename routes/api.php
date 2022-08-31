@@ -90,7 +90,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
 Route::GET('/patient-identification/{patient}',[MedicalTestsController::class,'showpatient']);
 Route::POST('/test-recording',[MedicalTestsController::class,'store']);
 Route::PATCH('/test-update/{patient}',[MedicalTestsController::class,'update']);
-Route::GET('/tests-for-patient/{patient}',[MedicalTestsController::class,'showtests']);
 Route::GET('/tests-of-hospital',[MedicalTestsController::class,'showtestperHospital']);
 Route::POST('/medecine-recording',[MedecinesController::class,'store']);
 Route::PATCH('/medecine-update/{medecine}',[MedecinesController::class,'update']);
