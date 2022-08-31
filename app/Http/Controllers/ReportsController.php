@@ -35,7 +35,7 @@ class ReportsController extends Controller
     }}
     public function showall(){
         if(auth()->user()->role== 'admin'){
-            $results=Medical_report::where('hospital_id',auth()->user()->id)->get();
+            $results=Medical_report::with('Doctor','Medecine','Patient')->where('hospital_id',auth()->user()->id)->get();
             return response(['results'=>$results]);
         }
         else{
