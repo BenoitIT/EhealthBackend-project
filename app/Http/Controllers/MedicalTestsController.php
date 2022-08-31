@@ -86,12 +86,10 @@ else{
              $id= DB::table('patients')->select('id')->where('Telephone', $patient)->first();
              $fid=$id->id;
              $medicalHistory = Medical_report::with('Doctor','Medecine','Hospital')->where('patient_id',$fid)->latest()->get();
-             //$name=$medicalHistory->doctor->FirstName;
+             $reports=[];
              foreach($medicalHistory as $report){
-            return response([
-            'message'=>'Patient identification',
-            'Details'=>$patientname,
-            'report'=>$report->id,
+           array_push($reports,[
+           'report'=>$report->id,
             'attendance date'=>$report->created_at,
             'doctor firstname'=>$report->doctor->FirstName,
             'doctor lastname'=>$report->doctor->LastName,
@@ -100,7 +98,9 @@ else{
             'hospital'=>$report->hospital->hospital_name,
             'hospital_ownership_type'=>$report->hospital->hospital_OwnershipType
               ]);
-
+             return response(['message'=>'Patient identification',
+             'Details'=>$patientname,
+             'list'=>$reports]);
             }
 
 }
