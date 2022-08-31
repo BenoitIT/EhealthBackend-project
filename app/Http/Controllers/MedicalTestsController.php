@@ -86,12 +86,12 @@ else{
              $id= DB::table('patients')->select('id')->where('Telephone', $patient)->first();
              $fid=$id->id;
              $medicalHistory = Medical_report::with('Doctor','Medecine','Hospital')->where('patient_id',$fid)->get();
-             $f=$medicalHistory->Doctor->FirstName;
+             //$name=$medicalHistory->Doctor->FirstName;
             return response([
             'message'=>'Patient identification',
             'Details'=>$patientname,
             'medical attendance history'=>$medicalHistory,
-            'name'=>$f
+
 
         ]);
 
