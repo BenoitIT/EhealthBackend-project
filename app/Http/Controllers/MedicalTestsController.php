@@ -85,7 +85,7 @@ else{
              ->first();
              $id= DB::table('patients')->select('id')->where('Telephone', $patient)->first();
              $fid=$id->id;
-             $medicalHistory = Medical_report::with('Doctor','Medecine','Hospital')->where('patient_id',$fid)->get();
+             $medicalHistory = Medical_report::with('Doctor','Medecine','Hospital')->where('patient_id',$fid)->all();
              //$name=$medicalHistory->doctor->FirstName;
              foreach($medicalHistory as $report){
             return response([
