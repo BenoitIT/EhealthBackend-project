@@ -91,7 +91,7 @@ else{
             return response([
             'message'=>'Patient identification',
             'Details'=>$patientname,
-            'medical attendance history'=>$medicalHistory->pluck('doctor,medecene'),
+            'medical attendance history'=>$medicalHistory,
 
 
         ]);
