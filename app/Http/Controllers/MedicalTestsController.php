@@ -80,7 +80,7 @@ else{
     public function showpatient($patient){
         if(auth()->user()->role== 3){
         $patientname = DB::table('patients')
-             ->select('FirstName','LastName','province','Gender','BirthDate','Telephone')
+             ->select('id','FirstName','LastName','province','Gender','BirthDate','Telephone')
              ->where('Telephone', $patient)
              ->first();
              $id= DB::table('patients')->select('id')->where('Telephone', $patient)->first();
@@ -100,6 +100,7 @@ else{
             'hospital'=>$report->hospital->hospital_name,
             'hospital_ownership_type'=>$report->hospital->hospital_OwnershipType
               ]);
+
             }
 
 }
