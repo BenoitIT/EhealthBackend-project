@@ -89,8 +89,8 @@ else{
         return response([
             'message'=>'Patient identification',
             'Details'=>$patientname,
-            'medical attendance history'=>$medicalHistory->doctor->Firstname,
-            $medicalHistory->medecine->medecine_name
+            'medical attendance history'=>$medicalHistory->Firstname,
+            $medicalHistory->medecine_name
         ]);
 
     }
