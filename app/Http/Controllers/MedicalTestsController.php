@@ -94,6 +94,7 @@ else{
             'report'=>$report->id,
             'doctor firstname'=>$report->doctor->FirstName,
             'doctor lastname'=>$report->doctor->LastName,
+            'doctor email'=>$report->doctor->doctor_email,
             'medcenine name'=>$report->medecine->medecine_name,
             'hospital'=>$report->hospital->hospital_name,
             'hospital_ownership_type'=>$report->hospital->hospital_OwnershipType
