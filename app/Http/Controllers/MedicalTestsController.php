@@ -83,7 +83,7 @@ else{
              ->select('FirstName','LastName','province','Gender','BirthDate','Telephone')
              ->where('Telephone', $patient)
              ->first();
-             $id= DB::table('patients')->select('id')->where('Telephone', $patient);
+             $id= DB::table('patients')->select('id')->where('Telephone', $patient)->first();
              //$medicalHistory = Medical_report::where('patient_id',$id)->get();
         return response([
             'message'=>'Patient identification',
