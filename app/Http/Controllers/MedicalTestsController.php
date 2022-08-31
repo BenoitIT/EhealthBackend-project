@@ -89,7 +89,7 @@ else{
         return response([
             'message'=>'Patient identification',
             'Details'=>$patientname,
-            'medical attendance history'=>$fid
+            'medical attendance history'=>$medicalHistory
         ]);
 
     }
