@@ -19,10 +19,9 @@ class PatientController extends Controller
             'district'=>'required',
             'Gender'=>'required',
             'BirthDate'=>'required',
-            'email'=>'required|unique:patients',
             'Telephone'=>'required|min:10|max:10',
-            'password'=>'required|min:4|max:8',
-    
+            'password'=>'required|min:4|max:8'
+
         ]);
         Patient::create([
             'FirstName'=>$request->FirstName,
