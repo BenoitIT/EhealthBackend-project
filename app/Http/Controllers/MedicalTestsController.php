@@ -49,7 +49,7 @@ else{
         if(auth()->user()->role== 3){
         $patientname = DB::table('patients')
              ->select('FirstName','LastName')
-             ->where('id', $patient)
+             ->where('Telephone', $patient)
              ->first();
         $targettPatient=DB::table('medical_tests')->where('patient_id',$patient)->get();
         return response([
