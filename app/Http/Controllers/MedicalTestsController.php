@@ -92,6 +92,7 @@ else{
             'message'=>'Patient identification',
             'Details'=>$patientname,
             'report'=>$report->id,
+            'attendance date'=>$report->created_at,
             'doctor firstname'=>$report->doctor->FirstName,
             'doctor lastname'=>$report->doctor->LastName,
             'doctor email'=>$report->doctor->doctor_email,
