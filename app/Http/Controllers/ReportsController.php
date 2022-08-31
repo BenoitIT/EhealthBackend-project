@@ -36,17 +36,22 @@ class ReportsController extends Controller
     public function showall(){
         if(auth()->user()->role== 'admin'){
             $reports=Medical_report::with('Doctor','Medecine','Patient')->where('hospital_id',auth()->user()->id)->get();
-             foreach($reports as $report){
-            return response(['report_id'=>$report->id,
-                             'doctor_Firstname'=>$report->doctor->FirstName ,
-                             'doctor_Lastname'=>$report->doctor->LastName ,
-                             'doctor_Firstname'=>$report->doctor->FirstName ,
-                             'Medecine_name'=>$report->medecine->medecine_name ,
-                             'patient_Firstname'=>$report->patient->FirstName ,
-                             'patient_lastname'=>$report->patient->LastName ,
-                             'created at'=>$report->created_at ,
-                             ]);
-        }
+
+            $response = [];
+
+            foreach($reports as $report){
+                    array_push($response,['report_id'=>$report->id,
+                    'doctor_Firstname'=>$report->doctor->FirstName ,
+                    'doctor_Lastname'=>$report->doctor->LastName ,
+                    'doctor_Firstname'=>$report->doctor->FirstName ,
+                    'Medecine_name'=>$report->medecine->medecine_name ,
+                    'patient_Firstname'=>$report->patient->FirstName ,
+                    'patient_lastname'=>$report->patient->LastName ,
+                    'created at'=>$report->created_at ,
+                ]);
+            }
+
+            return $response;
         }
         else{
             return response(['message'=>'you are not allowed']);
