@@ -78,7 +78,7 @@ else{
     public function showpatient($patient){
         if(auth()->user()->role== 3){
         $patientname = DB::table('patients')
-             ->select('FirstName','LastName','province','Gender','BirthDate','Telephone')
+             ->select('id','FirstName','LastName','province','Gender','BirthDate','Telephone')
              ->where('Telephone', $patient)
              ->first();
         return response([
