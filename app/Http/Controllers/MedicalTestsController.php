@@ -87,16 +87,15 @@ else{
              $fid=$id->id;
              $medicalHistory = Medical_report::with('Doctor','Medecine','Hospital')->where('patient_id',$fid)->get();
              //$name=$medicalHistory->doctor->FirstName;
-             $medicalHistory->pluck('FirstName');
+             foreach($medicalHistory as $report){
             return response([
             'message'=>'Patient identification',
             'Details'=>$patientname,
-            'medical attendance history'=>$medicalHistory,
+            'medical attendance history'=>$report->id,
+              ]);
+            }
 
-
-        ]);
-
-    }
+}
 else{
     return response(['message'=>'you are not allowed']);
 }}}
