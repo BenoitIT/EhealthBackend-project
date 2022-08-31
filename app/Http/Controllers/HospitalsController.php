@@ -48,7 +48,7 @@ class HospitalsController extends Controller
     public function showAll(){
         if(auth()->user()->role== 1){
      return response([
-        'hospitals list'=>Hospital::all()
+        'hospitals list'=>DB::table('hospitals')->select('hospital_name','hospital_Admin','province','district','hospital_email','hospital_OwnershipType')
      ]);
     }
     else{
