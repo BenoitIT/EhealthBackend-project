@@ -16,7 +16,7 @@ class MedicalTestsController extends Controller
     $hospitalId=DB::table('doctors')->select('hospital_id')->where('id',auth()->user()->id)->first();
    $request->validate([
     'patient_id'=>'required',
-    'hospital_id'=>'required',
+    'test_name'=>'required',
     'testing_date'=>'required'
    ]);
    Medical_test::create([
