@@ -14,14 +14,14 @@ class MedecinesController extends Controller
         $request->validate([
             'patient_id'=>'required',
             'medecine_name'=>'required',
-            'medecineProvision_date'=>'required'
+
         ]);
         Medecine::create([
             'patient_id'=>$request->patient_id,
             'doctor_id'=>auth()->user()->id,
             'hospital_id'=> $hospitalId->hospital_id,
             'medecine_name'=>$request->medecine_name,
-            'medecineProvision_date'=>$request->medecineProvision_date
+            
         ]);
         return response([
             'message'=>'medecine details added'
