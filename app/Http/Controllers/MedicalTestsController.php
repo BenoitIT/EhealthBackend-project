@@ -87,12 +87,12 @@ else{
               ]);
               if(!$patientname){
                 return response(['message'=>'No patient available with given phone number']);
-              }
+              }else{
              return response(['message'=>'Patient identification',
              'Details'=>$patientname,
              'list'=>$reports,
             'medical test passed'=> $targettPatient]);
-            }
+            }}
 
 }
 else{
