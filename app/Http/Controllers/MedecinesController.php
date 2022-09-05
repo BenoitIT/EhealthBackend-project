@@ -13,7 +13,6 @@ class MedecinesController extends Controller
         $hospitalId=DB::table('doctors')->select('hospital_id')->where('id',auth()->user()->id)->first();
         $request->validate([
             'patient_id'=>'required',
-            'hospital_id'=>'required',
             'medecine_name'=>'required',
             'medecineProvision_date'=>'required'
         ]);

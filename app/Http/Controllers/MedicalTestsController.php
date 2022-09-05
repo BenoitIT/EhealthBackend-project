@@ -17,7 +17,6 @@ class MedicalTestsController extends Controller
    $request->validate([
     'patient_id'=>'required',
     'hospital_id'=>'required',
-    'test_name'=>'required',
     'testing_date'=>'required'
    ]);
    Medical_test::create([
