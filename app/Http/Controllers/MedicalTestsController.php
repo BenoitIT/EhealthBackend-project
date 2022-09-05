@@ -68,7 +68,7 @@ else{
              ->select('id','FirstName','LastName','province','Gender','BirthDate')
              ->where('Telephone', $patient)
              ->get();
-             if(!$patientname){
+             if(empty($patientname)){
                 return response(['message'=>'No patient available with given phone number']);
               }else{
              $id= DB::table('patients')->select('id')->where('Telephone', $patient)->first();
