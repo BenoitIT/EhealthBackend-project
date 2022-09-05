@@ -85,6 +85,9 @@ else{
             'hospital'=>$report->hospital->hospital_name,
             'hospital_ownership_type'=>$report->hospital->hospital_OwnershipType
               ]);
+              if(!$patientname){
+                return response(['message'=>'No patient available with given phone number']);
+              }
              return response(['message'=>'Patient identification',
              'Details'=>$patientname,
              'list'=>$reports,
