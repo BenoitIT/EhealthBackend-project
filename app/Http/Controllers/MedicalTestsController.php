@@ -13,7 +13,7 @@ class MedicalTestsController extends Controller
 {
     public function store(request $request){
         if(auth()->user()->role== 3){
-    $hospitalId=DB::table('doctors')->select('hospital_id')->where('doctor_id',auth()->user()->id)->first();
+    $hospitalId=DB::table('doctors')->select('hospital_id')->where('id',auth()->user()->id)->first();
    $request->validate([
     'patient_id'=>'required',
     'hospital_id'=>'required',
