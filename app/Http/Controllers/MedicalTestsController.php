@@ -90,11 +90,12 @@ else{
                'hospital_ownership_type'=>$report->hospital->hospital_OwnershipType
                  ]);
 
+
+               }
                 return response(['message'=>'Patient identification',
                 'Details'=>$patientname,
                 'list'=>$reports,
                'medical test passed'=> $targettPatient]);
-               }
               }else{
                 return response(['message'=>'No patient available with given phone number']);
               }
