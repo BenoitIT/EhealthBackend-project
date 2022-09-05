@@ -69,32 +69,32 @@ else{
              ->where('Telephone', $patient)
              ->get();
              if($patientname->isNotEmpty()){
-                return response(['message'=>'No patient available with given phone number']);
+                $id= DB::table('patients')->select('id')->where('Telephone', $patient)->first();
+                $fid=$id->id;
+                $medicalHistory = Medical_report::with('Doctor','Medecine','Hospital')->where('patient_id',$fid)->latest()->get();
+
+             $targettPatient=DB::table('medical_tests')->select('test_name','testing_date')->where('patient_id',$fid)->get();
+                $reports=[];
+                foreach($medicalHistory as $report){
+              array_push($reports,[
+              'report'=>$report->id,
+               'attendance date'=>$report->created_at,
+               'doctor firstname'=>$report->doctor->FirstName,
+               'doctor lastname'=>$report->doctor->LastName,
+               'doctor email'=>$report->doctor->doctor_email,
+               'medcenine name'=>$report->medecine->medecine_name,
+               'hospital'=>$report->hospital->hospital_name,
+               'hospital_ownership_type'=>$report->hospital->hospital_OwnershipType
+                 ]);
+
+                return response(['message'=>'Patient identification',
+                'Details'=>$patientname,
+                'list'=>$reports,
+               'medical test passed'=> $targettPatient]);
+               }
               }else{
-             $id= DB::table('patients')->select('id')->where('Telephone', $patient)->first();
-             $fid=$id->id;
-             $medicalHistory = Medical_report::with('Doctor','Medecine','Hospital')->where('patient_id',$fid)->latest()->get();
-
-          $targettPatient=DB::table('medical_tests')->select('test_name','testing_date')->where('patient_id',$fid)->get();
-             $reports=[];
-             foreach($medicalHistory as $report){
-           array_push($reports,[
-           'report'=>$report->id,
-            'attendance date'=>$report->created_at,
-            'doctor firstname'=>$report->doctor->FirstName,
-            'doctor lastname'=>$report->doctor->LastName,
-            'doctor email'=>$report->doctor->doctor_email,
-            'medcenine name'=>$report->medecine->medecine_name,
-            'hospital'=>$report->hospital->hospital_name,
-            'hospital_ownership_type'=>$report->hospital->hospital_OwnershipType
-              ]);
-
-             return response(['message'=>'Patient identification',
-             'Details'=>$patientname,
-             'list'=>$reports,
-            'medical test passed'=> $targettPatient]);
-            }}
-
+                return response(['message'=>'No patient available with given phone number']);
+              }
 }
 else{
     return response(['message'=>'you are not allowed']);
