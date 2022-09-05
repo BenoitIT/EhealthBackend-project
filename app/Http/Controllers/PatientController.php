@@ -30,7 +30,6 @@ class PatientController extends Controller
             'district'=>$request->district,
             'Gender'=>$request->Gender,
             'BirthDate'=>$request->BirthDate,
-            'email'=>$request->email,
             'Telephone'=>$request->Telephone,
             'password'=>hash::make($request->password),
 
