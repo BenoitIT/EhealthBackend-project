@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Throwable;
 use App\Models\Patient;
 use Faker\Provider\Medical;
 use App\Models\Medical_test;
@@ -63,7 +64,9 @@ else{
         return response(['message'=>'you are not allowed']);
     }}
     public function showpatient($patient){
+        try{
         if(auth()->user()->role== 3){
+
         $patientname = DB::table('patients')
              ->select('id','FirstName','LastName','province','Gender','BirthDate')
              ->where('Telephone', $patient)
@@ -98,4 +101,6 @@ else{
 }
 else{
     return response(['message'=>'you are not allowed']);
+}} catch(Throwable $err){
+    return $err->getMessage();
 }}}
