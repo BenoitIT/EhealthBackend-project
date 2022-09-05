@@ -24,7 +24,6 @@ class MedecinesController extends Controller
         ]);
         return response([
             'message'=>'medecine details added',
-            'hosiptal'=> auth()->user()->id
         ]);
     }
     else{
