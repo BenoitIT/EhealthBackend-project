@@ -21,7 +21,7 @@ class ReportsController extends Controller
         Medical_report::create([
             'patient_id'=>$patient->patient_id,
             'doctor_id'=>auth()->user()->id,
-            'hospital_id'=>$hospitalId,
+            'hospital_id'=>$hospitalId->hospital_id,
             'test_id'=>$test->id,
             'medecine_id'=>$medecine->id
         ]);

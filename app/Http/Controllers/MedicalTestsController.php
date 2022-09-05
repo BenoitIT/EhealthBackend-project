@@ -22,7 +22,7 @@ class MedicalTestsController extends Controller
    Medical_test::create([
     'patient_id'=>$request->patient_id,
     'doctor_id'=>auth()->user()->id,
-    'hospital_id'=>$hospitalId,
+    'hospital_id'=>$hospitalId->hospital_id,
     'test_name'=>$request->test_name,
     'testing_result'=>$request->testing_result,
     'testing_date'=>$request->testing_date
