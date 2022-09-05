@@ -68,6 +68,9 @@ else{
              ->select('id','FirstName','LastName','province','Gender','BirthDate')
              ->where('Telephone', $patient)
              ->get();
+             if(!$patientname){
+                return response(['message'=>'No patient available with given phone number']);
+              }else{
              $id= DB::table('patients')->select('id')->where('Telephone', $patient)->first();
              $fid=$id->id;
              $medicalHistory = Medical_report::with('Doctor','Medecine','Hospital')->where('patient_id',$fid)->latest()->get();
@@ -85,9 +88,7 @@ else{
             'hospital'=>$report->hospital->hospital_name,
             'hospital_ownership_type'=>$report->hospital->hospital_OwnershipType
               ]);
-              if(!$patientname){
-                return response(['message'=>'No patient available with given phone number']);
-              }else{
+
              return response(['message'=>'Patient identification',
              'Details'=>$patientname,
              'list'=>$reports,
