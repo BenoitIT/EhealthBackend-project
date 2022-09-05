@@ -16,15 +16,16 @@ class MedecinesController extends Controller
             'medecine_name'=>'required',
 
         ]);
-        Medecine::create([
-            'patient_id'=>$request->patient_id,
-            'doctor_id'=>auth()->user()->id,
-            'hospital_id'=> $hospitalId->hospital_id,
-            'medecine_name'=>$request->medecine_name,
-            
-        ]);
+        // Medecine::create([
+        //     'patient_id'=>$request->patient_id,
+        //     'doctor_id'=>auth()->user()->id,
+        //     'hospital_id'=> $hospitalId->hospital_id,
+        //     'medecine_name'=>$request->medecine_name,
+
+        // ]);
         return response([
-            'message'=>'medecine details added'
+            'message'=>'medecine details added',
+            'hosiptal'=> $hospitalId
         ]);
     }
     else{
