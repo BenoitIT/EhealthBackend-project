@@ -17,11 +17,11 @@ class ReportsController extends Controller
         $patient= DB::table('medecines')->SELECT('patient_id')->where('doctor_id',auth()->user()->id)->latest()->first();
         $medecine=DB::table('medecines')->SELECT('id')->where('doctor_id',auth()->user()->id)->latest()->first();
         $test=DB::table('medical_tests')->SELECT('id')->where('doctor_id',auth()->user()->id)->latest()->first();
-
+        $hospitalId=DB::table('doctors')->select('hospital_id')->where('doctor_id',auth()->user()->id)->first();
         Medical_report::create([
             'patient_id'=>$patient->patient_id,
             'doctor_id'=>auth()->user()->id,
-            'hospital_id'=>$request->hospital_id,
+            'hospital_id'=>$hospitalId,
             'test_id'=>$test->id,
             'medecine_id'=>$medecine->id
         ]);

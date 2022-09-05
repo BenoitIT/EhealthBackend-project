@@ -13,6 +13,7 @@ class MedicalTestsController extends Controller
 {
     public function store(request $request){
         if(auth()->user()->role== 3){
+    $hospitalId=DB::table('doctors')->select('hospital_id')->where('doctor_id',auth()->user()->id)->first();
    $request->validate([
     'patient_id'=>'required',
     'hospital_id'=>'required',
@@ -22,7 +23,7 @@ class MedicalTestsController extends Controller
    Medical_test::create([
     'patient_id'=>$request->patient_id,
     'doctor_id'=>auth()->user()->id,
-    'hospital_id'=>$request->hospital_id,
+    'hospital_id'=>$hospitalId,
     'test_name'=>$request->test_name,
     'testing_result'=>$request->testing_result,
     'testing_date'=>$request->testing_date
