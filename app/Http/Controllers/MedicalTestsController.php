@@ -65,16 +65,16 @@ else{
     public function showpatient($patient){
         if(auth()->user()->role== 3){
         $patientname = DB::table('patients')
-             ->select('id','FirstName','LastName','province','Gender','BirthDate','Telephone')
+             ->select('id','FirstName','LastName','province','Gender','BirthDate')
              ->where('Telephone', $patient)
              ->first();
              $id= DB::table('patients')->select('id')->where('Telephone', $patient)->first();
              $fid=$id->id;
              $medicalHistory = Medical_report::with('Doctor','Medecine','Hospital')->where('patient_id',$fid)->latest()->get();
-             $patientname = DB::table('patients')
-             ->select('FirstName','LastName')
-             ->where('Telephone', $patient)
-             ->first();
+            //  $patientname = DB::table('patients')
+            //  ->select('FirstName','LastName')
+            //  ->where('Telephone', $patient)
+            //  ->first();
           $targettPatient=DB::table('medical_tests')->select('test_name','testing_date')->where('patient_id',$fid)->get();
              $reports=[];
              foreach($medicalHistory as $report){
