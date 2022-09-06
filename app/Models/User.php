@@ -51,4 +51,7 @@ class User extends Authenticatable
     public function role(){
         return $this->belongsTo(Role::class);
     }
+    public function medicalreport(){
+        return $this->hasMany(Medical_report::class);
+      }
 }

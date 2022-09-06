@@ -13,7 +13,7 @@ class Medical_report extends Model
         return $this->belongsTo(Patient::class);
     }
     public function doctor(){
-        return $this->belongsTo(Doctor::class);
+        return $this->belongsTo(User::class);
     }
     public function hospital(){
         return $this->belongsTo(Hospital::class);
