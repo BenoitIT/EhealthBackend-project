@@ -90,10 +90,6 @@ class ReportsController extends Controller
                 return response(['results'=>$results]);
             }
             }
-            public function deleteAllrep(){
-                DB::table('medical_reports')->delete();
-                return response(['message'=>'all records delete']);
-            }
 
     public function patienreport(){
         if(auth()->user()){
