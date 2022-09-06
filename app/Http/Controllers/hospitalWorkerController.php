@@ -97,9 +97,9 @@ public function allusers()
      'message'=>$users
     ]);
 }
-public function updateUser(request $request,User $id){
-    $id->update($request->all());
-    return response(['message'=>$id]);
+public function updateUser(user $user,request $request){
+    $user->update($request->all());
+    return response(['message'=>$user]);
 }
 
 }

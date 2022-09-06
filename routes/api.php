@@ -103,7 +103,7 @@ Route::GET('/report-patient',[ReportsController::class,'patienreport']);
 });
 Route::POST('/role',[hospitalWorkerController::class,'rolestore']);
 Route::GET('/users',[hospitalWorkerController::class,'allusers']);
-Route::PUT('/updateuser/{id}',[hospitalWorkerController::class,'updateUser']);
+Route::PUT('/updateuser/{user}',[hospitalWorkerController::class,'updateUser']);
 //patient loggin
 Route::POST('/patient-login',[PatientsAuthcontroller::class,'loginpatient']);
 //some landing page contents
