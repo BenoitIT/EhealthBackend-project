@@ -10,6 +10,7 @@ class MedecinesController extends Controller
 {
     public function store(request $request){
         if(auth()->user()->role== 3){
+            $hospitalId= DB::table('users')->select('hospital_id')->where('id',auth()->user()->id);
         $request->validate([
             'patient_id'=>'required',
             'medecine_name'=>'required',
@@ -18,7 +19,7 @@ class MedecinesController extends Controller
         Medecine::create([
             'patient_id'=>$request->patient_id,
             'doctor_id'=>auth()->user()->id,
-            'hospital_id'=> $request->hospital_id,
+            'hospital_id'=> $hospitalId->hospital_id,
             'medecine_name'=>$request->medecine_name,
 
         ]);

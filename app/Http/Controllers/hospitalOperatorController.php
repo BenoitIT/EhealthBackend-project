@@ -116,7 +116,8 @@ else{
             'name' => $request->FirstName,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'role'=> 4
+            'role'=> 4,
+            'hospital_id'=>auth()->user()->id
         ]);
 
         return response([
