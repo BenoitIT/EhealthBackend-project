@@ -75,7 +75,7 @@ else{
              if($patientname->isNotEmpty()){
                 $id= DB::table('patients')->select('id')->where('Telephone', $patient)->first();
                 $fid=$id->id;
-                $medicalHistory = Medical_report::with('Doctor','Medecine','Hospital')->where('patient_id',$fid)->latest()->get();
+                $medicalHistory = Medical_report::with('User','Medecine','Hospital')->where('patient_id',$fid)->latest()->get();
 
              $targettPatient=DB::table('medical_tests')->select('test_name','testing_date')->where('patient_id',$fid)->get();
                 $reports=[];
@@ -83,9 +83,8 @@ else{
               array_push($reports,[
               'report'=>$report->id,
                'attendance_date'=>$report->created_at,
-               'doctor_firstname'=>$report->doctor->FirstName,
-               'doctor_lastname'=>$report->doctor->LastName,
-               'doctor_email'=>$report->doctor->doctor_email,
+               'doctor_name'=>$report->user->name,
+               'doctor_email'=>$report->user->email,
                'medcenine_name'=>$report->medecine->medecine_name,
                'hospital'=>$report->hospital->hospital_name,
                'hospital_ownership_type'=>$report->hospital->hospital_OwnershipType
