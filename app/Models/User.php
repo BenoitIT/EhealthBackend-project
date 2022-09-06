@@ -23,7 +23,8 @@ class User extends Authenticatable
         'email',
         'password',
         'last_used_at',
-        'role'
+        'role',
+        'hospital_id'
     ];
 
     /**
