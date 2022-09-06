@@ -14,7 +14,6 @@ class MedecinesController extends Controller
         $request->validate([
             'patient_id'=>'required',
             'medecine_name'=>'required',
-            'hospital_id'=>'required',
         ]);
         Medecine::create([
             'patient_id'=>$request->patient_id,
