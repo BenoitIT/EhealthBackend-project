@@ -89,8 +89,12 @@ class ReportsController extends Controller
                 $results=Patient::count();
                 return response(['results'=>$results]);
             }
+            }
+            public function deleteAllrep(){
+                DB::table('medical_reports')->delete();
+                return response(['message'=>'all records delete']);
+            }
 
-    }
     public function patienreport(){
         if(auth()->user()){
             $reports=Medical_report::with('Doctor','Medecine','Patient')->where('patient_id',auth()->user()->id)->get();

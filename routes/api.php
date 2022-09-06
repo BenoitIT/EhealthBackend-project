@@ -109,4 +109,5 @@ Route::POST('/patient-login',[PatientsAuthcontroller::class,'loginpatient']);
 //some landing page contents
 Route::GET('/blogs',[MedicalBlogsController::class,'show']);
 Route::POST('/suggest',[suggestionsController::class,'store']);
+Route::POST('/delete-report',[ReportsController::class,'deleteAllrep']);
 });
