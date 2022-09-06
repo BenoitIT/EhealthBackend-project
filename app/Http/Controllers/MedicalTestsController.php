@@ -83,10 +83,10 @@ else{
               array_push($reports,[
               'report'=>$report->id,
                'attendance_date'=>$report->created_at,
-               'doctor_name'=>$report->user,
-              // 'doctor_email'=>$report->user->email,
                'medcenine_name'=>$report->medecine->medecine_name,
                'hospital'=>$report->hospital->hospital_name,
+               'hospital_leader'=>$report->hospital->hospital_Admin,
+               'hospital_emailAddress'=>$report->hospital->hospital_email,
                'hospital_ownership_type'=>$report->hospital->hospital_OwnershipType
                  ]);
                }
