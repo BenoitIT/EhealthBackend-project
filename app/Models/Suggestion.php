@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Suggestion extends Model
 {
     use HasFactory;
-    protected $fillable=['sender_email','suggestion'];
+    protected $fillable = ['sender_email', 'suggestion'];
 }

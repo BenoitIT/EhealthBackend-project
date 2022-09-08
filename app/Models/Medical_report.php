@@ -8,20 +8,25 @@ use Illuminate\Database\Eloquent\Model;
 class Medical_report extends Model
 {
     use HasFactory;
-    protected $fillable=['patient_id','doctor_id','hospital_id','test_id','medecine_id'];
-    public function patient(){
+    protected $fillable = ['patient_id', 'doctor_id', 'hospital_id', 'test_id', 'medecine_id'];
+    public function patient()
+    {
         return $this->belongsTo(Patient::class);
     }
-    public function user(){
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
-    public function hospital(){
+    public function hospital()
+    {
         return $this->belongsTo(Hospital::class);
     }
-    public function medecine(){
+    public function medecine()
+    {
         return $this->belongsTo(Medecine::class);
     }
-    public function test(){
+    public function test()
+    {
         return $this->hasMany(Medical_test::class);
     }
 }

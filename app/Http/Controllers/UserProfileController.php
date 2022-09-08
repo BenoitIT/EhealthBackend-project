@@ -8,51 +8,51 @@ use Illuminate\Http\Request;
 class UserProfileController extends Controller
 {
     //
-    public function store(request $request){
-        if(auth()->user()){
+    public function store(request $request)
+    {
+        if (auth()->user()) {
             $request->validate([
-                'profile'=>'required',
-                'profile_description'=>'required',
-                'user_id'=>'unique:user_profiles'
+                'profile' => 'required',
+                'profile_description' => 'required',
+                'user_id' => 'unique:user_profiles'
             ]);
             $profile = cloudinary()->uploadFile($request->file('profile')->getRealPath())->getSecurePath();
             User_profile::create([
-                'profile'=>$profile,
-                'profile_description'=>$request->profile_description,
-                'user_id'=>auth()->user()->id
+                'profile' => $profile,
+                'profile_description' => $request->profile_description,
+                'user_id' => auth()->user()->id
             ]);
             return response([
-                'message'=>'user profile created'
+                'message' => 'user profile created'
             ]);
         }
-
     }
-    public function update(User_profile $profile,request $request){
-        if(auth()->user()){
+    public function update(User_profile $profile, request $request)
+    {
+        if (auth()->user()) {
             $profile->update($request->all());
             return response([
-                'message'=>'profile updated',
-                'results'=>$profile
+                'message' => 'profile updated',
+                'results' => $profile
             ]);
         }
-
     }
-    public function show(){
-        if(auth()->user()){
-            $profile=User_profile::where('user_id',auth()->user()->id)->get();
+    public function show()
+    {
+        if (auth()->user()) {
+            $profile = User_profile::where('user_id', auth()->user()->id)->get();
             return response([
-                'results'=>$profile
+                'results' => $profile
             ]);
         }
-
     }
-    public function delete(){
-        if(auth()->user()){
-            $profile=User_profile::where('user_id',auth()->user()->id)->delete();
+    public function delete()
+    {
+        if (auth()->user()) {
+            $profile = User_profile::where('user_id', auth()->user()->id)->delete();
             return response([
-                'results'=>'delete success'
+                'results' => 'delete success'
             ]);
         }
-
     }
 }
