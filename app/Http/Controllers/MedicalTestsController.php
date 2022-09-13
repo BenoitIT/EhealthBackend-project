@@ -19,7 +19,7 @@ class MedicalTestsController extends Controller
             $request->validate([
                 'patient_id' => 'required',
                 'test_name' => 'required',
-                'testing_date' => 'required',
+
 
             ]);
             Medical_test::create([
@@ -28,7 +28,6 @@ class MedicalTestsController extends Controller
                 'hospital_id' => $hospitalId->hospital_id,
                 'test_name' => $request->test_name,
                 'testing_result' => $request->testing_result,
-                'testing_date' => $request->testing_date
             ]);
             return response([
                 'message' => 'medical test recorded'
