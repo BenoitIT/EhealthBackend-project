@@ -79,7 +79,7 @@ class MedicalTestsController extends Controller
                     $fid = $id->id;
                     $medicalHistory = Medical_report::with('User', 'Medecine', 'Hospital')->where('patient_id', $fid)->latest()->get();
 
-                    $targettPatient = DB::table('medical_tests')->select('test_name', 'testing_date')->where('patient_id', $fid)->get();
+                    $targettPatient = DB::table('medical_tests')->select('test_name', 'created_at')->where('patient_id', $fid)->get();
                     $reports = [];
                     foreach ($medicalHistory as $report) {
                         array_push($reports, [
