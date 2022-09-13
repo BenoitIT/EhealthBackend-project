@@ -27,7 +27,6 @@ class MedicalTestsController extends Controller
                 'doctor_id' => auth()->user()->id,
                 'hospital_id' => $hospitalId->hospital_id,
                 'test_name' => $request->test_name,
-                'testing_result' => $request->testing_result,
             ]);
             return response([
                 'message' => 'medical test recorded'
