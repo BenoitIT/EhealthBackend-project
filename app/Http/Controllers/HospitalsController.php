@@ -5,14 +5,14 @@ namespace App\Http\Controllers;
 use App\Models\Doctor;
 use App\Models\Patient;
 use App\Models\Hospital;
-use Faker\Provider\Medical;
 use Illuminate\Http\Request;
 use App\Models\Medical_report;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-
+/*this controller will be controlling hospital CRUD as well as
+ hospital admin loggin APIs*/
 class HospitalsController extends Controller
 {
 

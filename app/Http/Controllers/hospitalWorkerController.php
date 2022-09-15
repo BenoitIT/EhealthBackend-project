@@ -9,7 +9,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Auth\Events\Registered;
-use Illuminate\Support\Facades\Validator;
+/*this controller will be used for handling all system user sign in except patient
+and hospital admin */
 
 class hospitalWorkerController extends Controller
 {

@@ -8,9 +8,9 @@ use App\Models\Patient;
 use App\Models\Reciptionist;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-
+/*this controller will be controlling all crudoperations for hospital
+doctor and receptionist as well as their user account*/
 class hospitalOperatorController extends Controller
 {
     //CREATE DOCTOR
