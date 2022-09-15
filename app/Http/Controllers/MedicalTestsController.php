@@ -95,7 +95,7 @@ class MedicalTestsController extends Controller
                         'message' => 'Patient identification',
                         'Details' => $patientname,
                         'list' => $reports,
-                        'medical test passed' => $targettPatient
+                        'medicaltestpassed' => $targettPatient
                     ]);
                 } else {
                     return response(['message' => 'No patient available with given phone number']);
