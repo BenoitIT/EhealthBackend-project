@@ -57,8 +57,8 @@ class MedicalTestsController extends Controller
                 ->first();
             $targettHospital = DB::table('medical_tests')->select('id', 'test_name', 'testing_date')->where('hospital_id', auth()->user()->id)->get();
             return response([
-                'message' => 'list of tests made by:', $hospitalname,
-                'Medical tests' => $targettHospital
+                'message' => 'listOftestsMadeby:', $hospitalname,
+                'MedicalTests' => $targettHospital
             ]);
         } else {
             return response(['message' => 'you are not allowed']);
