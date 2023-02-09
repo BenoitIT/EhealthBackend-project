@@ -70,6 +70,7 @@ class hospitalWorkerController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'role' => 1,
+            'hospital_id'=>$request->hospital_id
         ]);
 
         event(new Registered($user));

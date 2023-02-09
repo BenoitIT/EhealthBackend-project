@@ -34,7 +34,8 @@ class PatientController extends Controller
                 'BirthDate' => $request->BirthDate,
                 'Telephone' => $request->Telephone,
                 'password' => hash::make($request->password),
-
+                'hospital_id'=>$request->hospital_id,
+                'email'=>$request->email
             ]);
             return response([
                 'message' => 'patient is registered successfully'

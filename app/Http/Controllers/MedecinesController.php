@@ -21,7 +21,6 @@ class MedecinesController extends Controller
                 'doctor_id' => auth()->user()->id,
                 'hospital_id' => $hospitalId->hospital_id,
                 'medecine_name' => $request->medecine_name,
-
             ]);
             return response([
                 'message' => 'medecine details added',

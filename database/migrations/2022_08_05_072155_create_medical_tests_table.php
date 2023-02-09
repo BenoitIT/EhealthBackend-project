@@ -20,7 +20,6 @@ return new class extends Migration
             $table->unsignedBigInteger('hospital_id');
             $table->string('test_name');
             $table->string('test_result')->nullable();
-            $table->date('testing_date');
             $table->foreign('patient_id')->references('id')->on('patients')->ondelete('cascade')->onUpdate('cascade');
             $table->foreign('doctor_id')->references('id')->on('users')->onUpdate('cascade');
             $table->foreign('hospital_id')->references('id')->on('hospitals')->onUpdate('cascade');

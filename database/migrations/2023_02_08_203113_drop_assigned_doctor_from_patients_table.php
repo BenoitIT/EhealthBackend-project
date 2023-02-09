@@ -15,8 +15,6 @@ return new class extends Migration
     {
         Schema::table('patients', function (Blueprint $table) {
             //
-            $table->dropColumn('assigned_doctor');
-            $table->dropColumn('hospital_id');
         });
     }
 

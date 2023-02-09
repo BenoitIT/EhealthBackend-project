@@ -14,7 +14,7 @@ class Patient extends Authenticatable
         'FirstName', 'LastName',
         'province', 'district',
         'Gender', 'BirthDate',
-        'Telephone', 'email', 'password'
+        'Telephone', 'email', 'password','hospital_id'
     ];
 
     public function Hospital()

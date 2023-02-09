@@ -19,7 +19,6 @@ return new class extends Migration
             $table->unsignedBigInteger('doctor_id');
             $table->unsignedBigInteger('hospital_id');
             $table->string('medecine_name');
-            $table->date('medecineProvision_date');
             $table->foreign('patient_id')->references('id')
             ->on('patients')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('doctor_id')->references('id')

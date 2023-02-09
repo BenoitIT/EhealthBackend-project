@@ -53,6 +53,7 @@ class newHospitalAdmin extends Controller
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
                 'role' => '3',
+                'hospital_id'=>auth()->user()->id
             ]);
 
 
@@ -69,7 +70,7 @@ class newHospitalAdmin extends Controller
     }
     public function storeRec(Request $request)
     {
-        if (auth()->user()->role == 'admin') {
+        if (auth()->user()) {
 
             $request->validate([
                 'name' => ['required', 'string', 'max:255'],
@@ -83,6 +84,7 @@ class newHospitalAdmin extends Controller
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
                 'role' => '4',
+                'hospital_id'=>auth()->user()->id
             ]);
 
 
